@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -65,13 +66,17 @@ public class Sone extends Application {
         h.setStyle("-fx-background-color:black");   
         
         h.getChildren().add(btn);
-        
+
+        AnchorPane a = new AnchorPane();
         Image ig = new Image("/images/Avenger.jpg");
         ImageView i = new ImageView(ig);
+        i.fitWidthProperty().bind(a.widthProperty());
+        i.fitHeightProperty().bind(a.heightProperty());
+        a.getChildren().add(i);
         
         pane.setTop(v);
         pane.setBottom(h);
-        pane.setCenter(i);
+        pane.setCenter(a);
         
         Scene scene = new Scene(pane);
         stage.setScene(scene);

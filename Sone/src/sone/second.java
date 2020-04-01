@@ -295,7 +295,7 @@ public class second {
        pathLoki.getElements().add(new MoveTo(1401,143));
        pathLoki.getElements().add(new VLineTo(800));
        
-       PathTransition forLoki = new PathTransition(Duration.seconds(1),pathLoki,Loki);
+       PathTransition forLoki = new PathTransition(Duration.seconds(0.7),pathLoki,Loki);
        forLoki.setCycleCount(PathTransition.INDEFINITE);
        forLoki.setAutoReverse(true);
        forLoki.play();
@@ -312,7 +312,7 @@ public class second {
        pathUltron.getElements().add(new MoveTo(1048,133));
        pathUltron.getElements().add(new VLineTo(800));
        
-       PathTransition forUltron = new PathTransition(Duration.seconds(1),pathUltron,Ultron);
+       PathTransition forUltron = new PathTransition(Duration.seconds(0.5),pathUltron,Ultron);
        forUltron.setCycleCount(PathTransition.INDEFINITE);
        forUltron.setAutoReverse(true);
        forUltron.play();
