@@ -18,6 +18,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.VLineTo;
@@ -388,6 +390,7 @@ public class second {
        Stage stage = new Stage();
        stage.setScene(scene);
        stage.show();
+       music();
        
        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
            @Override
@@ -429,6 +432,19 @@ public class second {
        };
        timer.start();
    }
+    //For Background Music
+ public void start(Stage s) throws Exception{
+        //leave empty
+    }
+    
+   
+    MediaPlayer mediaplayer;
+    public void music(){
+        String s="C:\\Users\\USER\\Documents\\NetBeansProjects\\sone\\src\\music\\sone.mp3";
+        Media h= new Media(Paths.get(s).toUri().toString());
+        mediaplayer = new MediaPlayer(h);
+        mediaplayer.play();
+    }
        
  }
 
