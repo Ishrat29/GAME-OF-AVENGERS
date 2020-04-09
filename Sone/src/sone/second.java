@@ -5,12 +5,15 @@
  */
 package sone;
 
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -20,9 +23,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.VLineTo;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -31,11 +37,19 @@ import javafx.util.Duration;
  * @author USER
  */
 public class second {
+     
+   public Rectangle2D r,r1;
+   public ImageView Thor,Time;
+   private AnchorPane pane;
+   private ArrayList<ImageView> imgList;
+   private Text t1,t2;
+   private int s=0; 
+
     
     boolean goUp,goDown,goRight,goLeft;
     
     second(){
-        
+       imgList=new ArrayList<>(); 
        HBox h = new HBox();
        h.setMinHeight(100);
        h.setMinWidth(1900);
@@ -322,6 +336,7 @@ public class second {
        //SETTING THE INFINITY STONES
        Image soulStone = new Image("/images/SoulStone.jpg");
        ImageView Soul = new ImageView(soulStone);
+       imgList.add(Soul);
        Soul.setFitHeight(50);
        Soul.setFitWidth(30);
        Soul.setX(114);
@@ -329,6 +344,7 @@ public class second {
       
        Image powerStone = new Image("/images/PowerStone.jpg");
        ImageView Power = new ImageView(powerStone);
+       imgList.add(Power); 
        Power.setFitHeight(50);
        Power.setFitWidth(30);
        Power.setX(553);
@@ -336,6 +352,7 @@ public class second {
        
        Image realityStone = new Image("/images/RealityStone.jpg");
        ImageView Reality = new ImageView(realityStone);
+       imgList.add(Reality);
        Reality.setFitHeight(50);
        Reality.setFitWidth(30);
        Reality.setX(848);
@@ -343,6 +360,7 @@ public class second {
        
        Image spaceStone = new Image("/images/SpaceStone.jpg");
        ImageView Space = new ImageView(spaceStone);
+       imgList.add(Space);
        Space.setFitHeight(50);
        Space.setFitWidth(30);
        Space.setX(1148);
@@ -350,23 +368,44 @@ public class second {
        
        Image mindStone = new Image("/images/MindStone.jpg");
        ImageView Mind = new ImageView(mindStone);
+       imgList.add(Mind);
        Mind.setFitHeight(50);
        Mind.setFitWidth(30);
        Mind.setX(1299);
        Mind.setY(21);
+
        
        Image timeStone = new Image("/images/TimeStone.jpg");
-       ImageView Time = new ImageView(timeStone);
+       Time = new ImageView(timeStone);
+       imgList.add(Time);
        Time.setFitHeight(50);
        Time.setFitWidth(30);
        Time.setX(25);
        Time.setY(819);
+
+
        
+       //THOR collecting stones.
        Image thor = new Image("/images/Thor.jpg");
-       ImageView Thor = new ImageView(thor);
+       Thor = new ImageView(thor);
+       r1 = new Rectangle2D(Thor.getX(),Thor.getY(),Thor.getFitWidth(),Thor.getFitHeight());
        Thor.setFitHeight(150);
        Thor.setFitWidth(150);
        Thor.relocate(1700,387);
+       t1=new Text();
+       t1.setText("Score");
+       t1.setFont(new Font("Italic",39));
+       t1.setFill(Color.RED);
+       t1.setX(1541);
+       t1.setY(33);
+
+       t2=new Text();
+       t2.setText("0");
+       t2.setFill(Color.RED);
+       t2.setFont(new Font("Italic", 39));
+       t2.setX(1658);
+       t2.setY(34);
+
 
        
        Button btn = new Button("EXIT");
@@ -379,7 +418,7 @@ public class second {
        
        h.getChildren().addAll(btn);
        
-       AnchorPane pane = new AnchorPane(h);
+       pane = new AnchorPane(h);
        pane.setMinHeight(1000);
        pane.setMinWidth(1900);
        
@@ -415,6 +454,8 @@ public class second {
            }       
           }
        });
+
+
        
        AnimationTimer timer = new AnimationTimer(){
            double delta = 4;
@@ -423,19 +464,37 @@ public class second {
                double currX=Thor.getLayoutX();
                double currY=Thor.getLayoutY();
                
-               if(goUp) currY-=delta;
-               if(goDown) currY+=delta;
-               if(goLeft) currX-=delta;
-               if(goRight) currX+=delta;
+               if(goUp){
+                  currY-=delta;
+                  checkCollision();
+               }
+               if(goDown){
+                  currY+=delta;
+                  checkCollision();
+               }
+               if(goLeft){
+                  currX-=delta;
+                  checkCollision();
+
+               }
+               if(goRight){
+                  currX+=delta;
+                  checkCollision();
+               }
                Thor.relocate(currX,currY);
+
            }
        };
        timer.start();
    }
+
+
+
     //For Background Music
  public void start(Stage s) throws Exception{
         //leave empty
     }
+
     
    
     MediaPlayer mediaplayer;
@@ -445,6 +504,22 @@ public class second {
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();
     }
+
+
+
+   //FOR Earning Scores.
+  private void checkCollision(){
+     for(ImageView e:imgList){
+        if(e.getBoundsInParent().intersects(Thor.getBoundsInParent())){
+           s+=100;
+           t2.setText(""+s);
+           imgList.remove(e);
+           pane.getChildren().remove(e);
+           break;
+        }
+     }
+  }
+
        
  }
 
