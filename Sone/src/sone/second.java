@@ -5,21 +5,29 @@
  */
 package sone;
 
+import java.awt.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -31,6 +39,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.swing.*;
 
 /**
  *
@@ -39,17 +48,26 @@ import javafx.util.Duration;
 public class second {
      
    public Rectangle2D r,r1;
-   public ImageView Thor,Time;
+   public ImageView Thor,Time,Hulk,Hero;
    private AnchorPane pane;
-   private ArrayList<ImageView> imgList;
+   private ArrayList<ImageView> imgList,block;
    private Text t1,t2;
    private int s=0; 
+   public ImageView Block13;
+   public double currX,currY;
+   private static int j=0;
+   private static Assets assets;
+   private static ArrayList<ImageView> enemy;
+
 
     
     boolean goUp,goDown,goRight,goLeft;
     
     second(){
-       imgList=new ArrayList<>(); 
+       assets=new Assets();
+       enemy=new ArrayList<>();
+       imgList=new ArrayList<>();
+       block=new ArrayList<>(); 
        HBox h = new HBox();
        h.setMinHeight(100);
        h.setMinWidth(1900);
@@ -64,6 +82,7 @@ public class second {
        //MOVEMENT OF BLOCK!
        Image b1 = new Image("/images/Tressaract.jpg");
        ImageView Block1 = new ImageView(b1);
+       block.add(Block1);
        Block1.setFitHeight(44);
        Block1.setFitWidth(44);
        Block1.setX(33);
@@ -81,6 +100,7 @@ public class second {
        //MOVEMENT OF BLOCK2
        Image b2 = new Image("/images/Tressaract.jpg");
        ImageView Block2 = new ImageView(b2);
+       block.add(Block2);
        Block2.setFitHeight(44);
        Block2.setFitWidth(44);
        Block2.setX(114);
@@ -98,6 +118,7 @@ public class second {
        //MOVEMENT OF BLOCK3
        Image b3 = new Image("/images/Tressaract.jpg");
        ImageView Block3 = new ImageView(b3);
+       block.add(Block3);
        Block3.setFitHeight(44);
        Block3.setFitWidth(44);
        Block3.setX(195);
@@ -115,6 +136,7 @@ public class second {
        //MOVEMENT OF BLOCK4
        Image b4 = new Image("/images/Tressaract.jpg");
        ImageView Block4 = new ImageView(b4);
+       block.add(Block4);
        Block4.setFitHeight(44);
        Block4.setFitWidth(44);
        Block4.setX(262);
@@ -132,6 +154,7 @@ public class second {
        //MOVEMENT OF BLOCK5
        Image b5 = new Image("/images/Tressaract.jpg");
        ImageView Block5 = new ImageView(b5);
+       block.add(Block5); 
        Block5.setFitHeight(44);
        Block5.setFitWidth(44);
        Block5.setX(629);
@@ -149,6 +172,7 @@ public class second {
        //MOVEMENT OF BLOCK6
        Image b6 = new Image("/images/Tressaract.jpg");
        ImageView Block6 = new ImageView(b6);
+       block.add(Block6);
        Block6.setFitHeight(44);
        Block6.setFitWidth(44);
        Block6.setX(693);
@@ -166,6 +190,7 @@ public class second {
        //MOVEMENT OF BLOCK7
        Image b7 = new Image("/images/Tressaract.jpg");
        ImageView Block7 = new ImageView(b7);
+       block.add(Block7);
        Block7.setFitHeight(44);
        Block7.setFitWidth(44);
        Block7.setX(778);
@@ -183,6 +208,7 @@ public class second {
        //MOVEMENT OF BLOCK8
        Image b8 = new Image("/images/Tressaract.jpg");
        ImageView Block8 = new ImageView(b8);
+       block.add(Block8);
        Block8.setFitHeight(44);
        Block8.setFitWidth(44);
        Block8.setX(860);
@@ -200,6 +226,7 @@ public class second {
        //MOVEMENT OF BLOCK9
        Image b9 = new Image("/images/Tressaract.jpg");
        ImageView Block9 = new ImageView(b9);
+       block.add(Block9);
        Block9.setFitHeight(44);
        Block9.setFitWidth(44);
        Block9.setX(916);
@@ -217,6 +244,7 @@ public class second {
        //MOVEMENT OF BLOCK10
        Image b10 = new Image("/images/Tressaract.jpg");
        ImageView Block10 = new ImageView(b10);
+       block.add(Block10);
        Block10.setFitHeight(44);
        Block10.setFitWidth(44);
        Block10.setX(1299);
@@ -234,6 +262,7 @@ public class second {
        //MOVEMENT OF BLOCK11
        Image b11 = new Image("/images/Tressaract.jpg");
        ImageView Block11 = new ImageView(b11);
+       block.add(Block11);
        Block11.setFitHeight(44);
        Block11.setFitWidth(44);
        Block11.setX(1217);
@@ -251,6 +280,7 @@ public class second {
        //MOVEMENT OF BLOCK12
        Image b12 = new Image("/images/Tressaract.jpg");
        ImageView Block12 = new ImageView(b12);
+       block.add(Block12);
        Block12.setFitHeight(44);
        Block12.setFitWidth(44);
        Block12.setX(1567);
@@ -267,7 +297,8 @@ public class second {
        
        //MOVEMENT OF BLOCK13
        Image b13 = new Image("/images/Tressaract.jpg");
-       ImageView Block13 = new ImageView(b13);
+       Block13 = new ImageView(b13);
+       block.add(Block13);
        Block13.setFitHeight(44);
        Block13.setFitWidth(44);
        Block13.setX(1637);
@@ -285,6 +316,7 @@ public class second {
        //MOVEMENT OF THANOS
        Image thanos = new Image("/images/Thanos.jpg");
        ImageView Thanos = new ImageView(thanos);
+       enemy.add(Thanos);
        Thanos.setFitHeight(150);
        Thanos.setFitWidth(100);
        Thanos.setX(407);
@@ -302,6 +334,7 @@ public class second {
        //MOVEMENT OF LOKI
        Image loki = new Image("/images/Loki.jpg");
        ImageView Loki = new ImageView(loki);
+       enemy.add(Loki);
        Loki.setFitHeight(150);
        Loki.setFitWidth(100);
        Loki.setX(1401);
@@ -319,6 +352,7 @@ public class second {
        //MOVEMENT OF ULTRON
        Image ultron = new Image("/images/Ultron.jpg");
        ImageView Ultron = new ImageView(ultron);
+       enemy.add(Ultron);
        Ultron.setFitHeight(150);
        Ultron.setFitWidth(100);
        Ultron.setX(1048);
@@ -386,25 +420,29 @@ public class second {
 
        
        //THOR collecting stones.
-       Image thor = new Image("/images/Thor.jpg");
-       Thor = new ImageView(thor);
-       r1 = new Rectangle2D(Thor.getX(),Thor.getY(),Thor.getFitWidth(),Thor.getFitHeight());
-       Thor.setFitHeight(150);
-       Thor.setFitWidth(150);
-       Thor.relocate(1700,387);
-       t1=new Text();
-       t1.setText("Score");
-       t1.setFont(new Font("Italic",39));
-       t1.setFill(Color.RED);
-       t1.setX(1541);
-       t1.setY(33);
+      Image thor = new Image("/images/Thor.jpg");
+      Thor = new ImageView(thor);
+      Thor.setFitHeight(150);
+      Thor.setFitWidth(150);
+      Thor.relocate(1700,387);
+      Image hulk = new Image("/images/Hulk.jpg");
+      Hulk = new ImageView(hulk);
+      Hulk.setFitHeight(150);
+      Hulk.setFitWidth(150);
+      Hulk.relocate(1700,387);
+      t1=new Text();
+      t1.setText("Score");
+      t1.setFont(new Font("Italic",44));
+      t1.setFill(Color.RED);
+      t1.setX(1716);
+      t1.setY(35);
 
-       t2=new Text();
-       t2.setText("0");
-       t2.setFill(Color.RED);
-       t2.setFont(new Font("Italic", 39));
-       t2.setX(1658);
-       t2.setY(34);
+      t2=new Text();
+      t2.setText("0");
+      t2.setFill(Color.RED);
+      t2.setFont(new Font("Italic", 44));
+      t2.setX(1859);
+      t2.setY(37);
 
 
        
@@ -458,11 +496,15 @@ public class second {
 
        
        AnimationTimer timer = new AnimationTimer(){
-           double delta = 4;
+           double delta = 10;
            @Override
            public void handle(long now) {
-               double currX=Thor.getLayoutX();
-               double currY=Thor.getLayoutY();
+
+               checkEnemy();
+               checkBlock();
+
+               currX=Thor.getLayoutX();
+               currY=Thor.getLayoutY();
                
                if(goUp){
                   currY-=delta;
@@ -519,6 +561,35 @@ public class second {
         }
      }
   }
+
+
+//Collision with Enemy
+ public void checkEnemy(){
+      for(ImageView f:enemy) {
+         if (Thor.getBoundsInParent().intersects(f.getBoundsInParent())) {
+            JOptionPane.showConfirmDialog(null,"You Lost \n Do you want to continue!!");
+            System.exit(0);
+         }
+      }
+   }
+
+
+//Collision with Block
+  public void checkBlock(){
+      for(ImageView b:block) {
+         if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j<5) {
+            j++;
+            Thor.setImage(assets.getHero());
+            Thor.relocate(1700,387);
+            break;
+         }
+         else if(j==5){
+            JOptionPane.showConfirmDialog(null,"You are Out of Hero!!\n Do you want to contiue!!");
+            System.exit(0);
+         }
+      }
+   }
+
 
        
  }
