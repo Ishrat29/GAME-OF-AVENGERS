@@ -28,7 +28,7 @@ public class Assets {
         hero.add(black);
         Image hawk = new Image("/images/Hawk.jpg");
         hero.add(hawk);
-        Image captain = new Image("/images/CaptainAmerica.jpg");
+        Image captain = new Image("/images/x.jpg");
         hero.add(captain);
     }
 
