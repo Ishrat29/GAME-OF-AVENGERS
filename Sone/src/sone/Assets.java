@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sone;
+import java.io.File;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -19,14 +20,16 @@ public class Assets {
 
     public Assets(){
         hero=new ArrayList<Image>();
-        Image hulk = new Image("/images/Hulk.jpg");
+        File file = new File("D:\\test\\src\\images\\Hulk.jpg");
+        Image hulk = new Image(file.toURI().toString());
         hero.add(hulk);
+       
         Image ironman = new Image("/images/Ironman.jpg");
         hero.add(ironman);
         Image black = new Image("/images/BlackWidow.jpg");
         ImageView Black = new ImageView(black);
         hero.add(black);
-        Image hawk = new Image("/images/Hawk.jpg");
+        Image hawk = new Image("/images/Hawk.png");
         hero.add(hawk);
         Image captain = new Image("/images/CaptainAmerica.jpg");
         hero.add(captain);
