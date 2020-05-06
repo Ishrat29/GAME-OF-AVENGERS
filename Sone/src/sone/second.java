@@ -577,13 +577,13 @@ public class second {
 //Collision with Block
   public void checkBlock(){
       for(ImageView b:block) {
-         if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j<5) {
+         if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j<6) {
             j++;
             Thor.setImage(assets.getHero());
             Thor.relocate(1700,387);
             break;
          }
-         else if(j==5){
+         else if(j==6){
             JOptionPane.showConfirmDialog(null,"You are Out of Hero!!\n Do you want to contiue!!");
             System.exit(0);
          }
