@@ -1,12 +1,14 @@
 
 package Experimental;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -14,16 +16,31 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class window{
     
+   public Rectangle2D r,r1;
+   public ImageView Thor,Time;
+   private AnchorPane pane;
+   private ArrayList<ImageView> imgList;
+   private Text t1,t2;
+   private int s=0; 
+    
     private ArrayList<ImageView> block;
-    public ImageView Thor;
+   // public ImageView Thor;
     boolean goUp,goDown,goRight,goLeft;
 
     window(){
+        
+        imgList=new ArrayList<>(); 
        //HBOX BELOW THE WINDOW 
        HBox h = new HBox();
        h.setMinHeight(50);
@@ -45,16 +62,26 @@ public class window{
        
        
        //HERE COMES OUR HERO !!!!
-       Image thor = new Image("/pics/Wanda.png");
+        Image thor = new Image("/pics/Thor.png");
         Thor = new ImageView(thor);
+        r1 = new Rectangle2D(Thor.getX(),Thor.getY(),Thor.getFitWidth(),Thor.getFitHeight());
         Thor.setFitHeight(100);
         Thor.setFitWidth(60);
         Thor.relocate(1100,300);
-       
-       
-       
-       
-       
+        
+        t1=new Text();
+        t1.setText("Score");
+        t1.setFont(new Font("Italic",30));
+        t1.setFill(Color.RED);
+        t1.setX(1079);
+        t1.setY(23);
+
+        t2=new Text();
+        t2.setText("0");
+        t2.setFill(Color.RED);
+        t2.setFont(new Font("Italic", 30));
+        t2.setX(1160);
+        t2.setY(24);
        
        
        //SETTING UP THE MAZE
@@ -356,6 +383,7 @@ public class window{
        //SETTING UP STONES
        Image soulStone = new Image("/pics/SoulStone.jpg");
        ImageView Soul = new ImageView(soulStone);
+       imgList.add(Soul);
        Soul.setFitHeight(35);
        Soul.setFitWidth(30);
        Soul.setX(31);
@@ -363,6 +391,7 @@ public class window{
       
        Image powerStone = new Image("/pics/PowerStone.jpg");
        ImageView Power = new ImageView(powerStone);
+       imgList.add(Power); 
        Power.setFitHeight(35);
        Power.setFitWidth(27);
        Power.setX(14);
@@ -370,6 +399,7 @@ public class window{
        
        Image realityStone = new Image("/pics/RealityStone.jpg");
        ImageView Reality = new ImageView(realityStone);
+       imgList.add(Reality);
        Reality.setFitHeight(35);
        Reality.setFitWidth(30);
        Reality.setX(342);
@@ -377,6 +407,7 @@ public class window{
        
        Image spaceStone = new Image("/pics/SpaceStone.jpg");
        ImageView Space = new ImageView(spaceStone);
+       imgList.add(Space);
        Space.setFitHeight(35);
        Space.setFitWidth(30);
        Space.setX(915);
@@ -384,6 +415,7 @@ public class window{
        
        Image mindStone = new Image("/pics/MindStone.jpg");
        ImageView Mind = new ImageView(mindStone);
+       imgList.add(Mind);
        Mind.setFitHeight(35);
        Mind.setFitWidth(30);
        Mind.setX(1130);
@@ -391,11 +423,13 @@ public class window{
        
        Image timeStone = new Image("/pics/TimeStone.jpg");
        ImageView Time = new ImageView(timeStone);
+       Time = new ImageView(timeStone);
+       imgList.add(Time);
        Time.setFitHeight(35);
        Time.setFitWidth(30);
        Time.setX(491);
        Time.setY(320);
-       
+     
        
        
        
@@ -417,7 +451,7 @@ public class window{
        
        
        //ADDING ALL THE ELEMENTS TO OUR ANCHORPANE
-       AnchorPane pane = new AnchorPane(h);
+       pane = new AnchorPane(h);
        pane.setMinHeight(800);
        pane.setMinWidth(1300);       
        pane.setBottomAnchor(h,0.0);
@@ -434,7 +468,7 @@ public class window{
        Stage stage = new Stage();
        stage.setScene(scene);
        stage.show();
-       
+       music();
        
        
        
@@ -471,11 +505,24 @@ public class window{
                double currX=Thor.getLayoutX();
                double currY=Thor.getLayoutY();
                
-               if(goUp) currY-=delta;
-               if(goDown) currY+=delta;
-               if(goLeft) currX-=delta;
-               if(goRight) currX+=delta;
-               if(!checkBlock(currX,currY))
+               if(goUp){
+                  currY-=delta;
+                  checkCollision();
+               }
+               if(goDown){
+                  currY+=delta;
+                  checkCollision();
+               }
+               if(goLeft){
+                  currX-=delta;
+                  checkCollision();
+
+               }
+               if(goRight){
+                  currX+=delta;
+                  checkCollision();
+               }
+              // if(!checkBlock(currX,currY))
                    Thor.relocate(currX,currY);
            }
        };
@@ -492,5 +539,33 @@ public class window{
         }
         return false;
     }
+     
+      //For Background Music
+  public void start(Stage s) throws Exception{
+         //leave empty;
+     }
+
+
+    MediaPlayer mediaplayer;
+    public void music(){
+        String s="C:\\Users\\USER\\Documents\\NetBeansProjects\\sone\\src\\music\\sone.mp3";
+        Media h= new Media(Paths.get(s).toUri().toString());
+        mediaplayer = new MediaPlayer(h);
+        mediaplayer.play();
+     }
+    
+    
+    //FOR Earning Scores.
+  private void checkCollision(){
+     for(ImageView e:imgList){
+        if(e.getBoundsInParent().intersects(Thor.getBoundsInParent())){
+           s+=100;
+           t2.setText(""+s);
+           imgList.remove(e);
+           pane.getChildren().remove(e);
+           break;
+        }
+     }
+  }
 
 }
