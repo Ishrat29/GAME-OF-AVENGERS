@@ -75,8 +75,8 @@ public class Experimental extends Application {
         
         h.getChildren().add(btn);
         
-        Image ig = new Image("/pics/white_bg.jpg");
-        ImageView i = new ImageView(ig);
+        Image image = new Image("/pics/white_bg.jpg");
+        ImageView i = new ImageView(image);
         i.setX(0);
         i.setY(0);
         i.setFitHeight(450); 
