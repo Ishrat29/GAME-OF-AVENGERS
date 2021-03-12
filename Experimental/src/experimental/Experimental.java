@@ -57,6 +57,7 @@ public class Experimental extends Application {
         
         // here goes the button
         Button btn = new Button("",iw);
+        
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -74,8 +75,13 @@ public class Experimental extends Application {
         
         h.getChildren().add(btn);
         
-        Image ig = new Image("/pics/Avenger.jpg");
+        Image ig = new Image("/pics/white_bg.jpg");
         ImageView i = new ImageView(ig);
+        i.setX(0);
+        i.setY(0);
+        i.setFitHeight(450); 
+        i.setFitWidth(749);
+        i.setPreserveRatio(true);  
         
         
         StackPane stackPane = new StackPane();
