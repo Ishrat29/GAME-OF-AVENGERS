@@ -26,69 +26,76 @@ import javafx.stage.Stage;
  * @author USER
  */
 public class Experimental extends Application {
-
-
+    
+    
     @Override
     public void start(Stage stage) throws Exception{
         BorderPane pane = new BorderPane();
         pane.setMinHeight(600);
         pane.setMinWidth(749);
-
-
+        
+        
         Text txt = new Text("Welcome To The World Of Avengers!!!");
         txt.setFill(Color.BEIGE);
         txt.setFont(Font.font("OCR A Extended",FontWeight.BOLD,FontPosture.REGULAR,30));
         txt.setStrokeWidth(2);
         txt.setStroke(Color.CADETBLUE);
-
-
+        
+        
         VBox v = new VBox();
         v.setMinHeight(75);
         v.setMinWidth(500);
         v.setAlignment(Pos.CENTER);
         v.setStyle("-fx-background-color:black");
         v.getChildren().add(txt);
-
-
+        
+        
         //image for button
-        FileInputStream input = new FileInputStream("E:\\Github\\Java_Game_project\\java_project\\Experimental\\src\\pics\\start_button.png");
-        Image img = new Image(input);
+        FileInputStream input = new FileInputStream("C:\\Users\\USER\\Documents\\NetBeansProjects\\Experimental\\src\\pics\\start_button.png");
+        Image img = new Image(input); 
         ImageView iw = new ImageView(img);
-
+        
         // here goes the button
         Button btn = new Button("",iw);
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                window box = new window();
-                stage.close();
+               window box = new window();
+               stage.close();
             }
         });
-
-
+        
+        
         HBox h = new HBox();
         h.setMinHeight(75);
         h.setMinWidth(500);
         h.setAlignment(Pos.CENTER);
-        h.setStyle("-fx-background-color:black");
-
+        h.setStyle("-fx-background-color:black");   
+        
         h.getChildren().add(btn);
-
+        
         Image ig = new Image("/pics/Avenger.jpg");
         ImageView i = new ImageView(ig);
-
+        
+        
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().add(i);
+        stackPane.getChildren().add(btn);
+        
+        
         pane.setTop(v);
         pane.setBottom(h);
-        pane.setCenter(i);
-
+        pane.setCenter(stackPane);
+       
+        
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         stage.show();
     }
 
-
+   
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }
