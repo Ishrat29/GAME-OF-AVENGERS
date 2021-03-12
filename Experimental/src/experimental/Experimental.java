@@ -51,7 +51,7 @@ public class Experimental extends Application {
         
         
         //image for button
-        FileInputStream input = new FileInputStream("C:\\Users\\USER\\Documents\\NetBeansProjects\\Experimental\\src\\pics\\start_button.png");
+        FileInputStream input = new FileInputStream("C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\pics\\start_button.png");
         Image img = new Image(input); 
         ImageView iw = new ImageView(img);
         
