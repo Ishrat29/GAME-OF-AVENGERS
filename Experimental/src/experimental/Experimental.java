@@ -36,7 +36,7 @@ public class Experimental extends Application {
         pane.setMinWidth(749);
 
 
-        Text txt = new Text("Welcome To The World Of Avengers!!!");
+        Text txt = new Text("Welcome To The World Of Avengers");
         txt.setFill(Color.BEIGE);
         txt.setFont(Font.font("OCR A Extended",FontWeight.BOLD,FontPosture.REGULAR,30));
         txt.setStrokeWidth(2);
