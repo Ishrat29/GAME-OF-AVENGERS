@@ -1,3 +1,4 @@
+
 package Experimental;
 
 import java.nio.file.Paths;
@@ -19,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.VLineTo;
@@ -26,16 +28,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javax.swing.JOptionPane;
 
+import javax.swing.*;
 
 
 public class window{
 
     private ArrayList<ImageView> stoneList,block,obstacle;
+    public ImageView Thor,Time,Hulk,Hero;
+    public ImageView Thanos,Ultron,Loki;
     boolean goUp,goDown,goRight,goLeft;
     public Rectangle2D r,r1;
-    public ImageView Thor,Time,Hulk,Hero;
     private AnchorPane pane;
     private final Text t1;
     private final Text t2;
@@ -47,6 +50,7 @@ public class window{
     private static ArrayList<ImageView> enemy;
 
     window(){
+
 
         assets=new Assets();
         enemy=new ArrayList<>();
@@ -78,7 +82,7 @@ public class window{
         //MOVEMENT OF OBSTACLE 2
         Image o2 = new Image("/pics/Tressaract.jpg");
         ImageView Obs2 = new ImageView(o2);
-        obstacle.add(Obs2);
+        obstacle.add(Obs1);
         Obs2.setFitHeight(22);
         Obs2.setFitWidth(22);
         Obs2.setX(33);
@@ -130,6 +134,83 @@ public class window{
         forB4.setCycleCount(PathTransition.INDEFINITE);
         forB4.setAutoReverse(true);
         forB4.play();
+
+
+
+
+
+        //MOVEMENT OF VILLAIN 1 (THANOS)
+        Image thanos = new Image("/pics/Thanos.jpg");
+        Thanos = new ImageView(thanos);
+        enemy.add(Thanos);
+        Thanos.setFitHeight(70);
+        Thanos.setFitWidth(30);
+        Thanos.relocate(58,542);
+
+        LineTo lineTo = new LineTo(50,-300);
+        LineTo lineTo1 = new LineTo(350,-300);
+        LineTo lineTo2 = new LineTo(350,-500);
+        LineTo lineTo3 = new LineTo(675,-500);
+        LineTo lineTo4 = new LineTo(675,100);
+
+        MoveTo moveTo = new MoveTo(50,100);
+
+        Path path_Thanos = new Path(moveTo,lineTo,lineTo1,lineTo2,lineTo3,lineTo4);
+
+        PathTransition forThanos = new PathTransition(Duration.seconds(10),path_Thanos,Thanos);
+        forThanos.setCycleCount(PathTransition.INDEFINITE);
+        forThanos.setAutoReverse(true);
+        forThanos.play();
+
+
+        //MOVEMENT OF VILLAIN 2 (ULTRON)
+        Image ultron = new Image("/pics/Ultron.jpg");
+        Ultron = new ImageView(ultron);
+        enemy.add(Ultron);
+        Ultron.setFitHeight(70);
+        Ultron.setFitWidth(30);
+        Ultron.relocate(58,542);
+
+        LineTo lineTo5 = new LineTo(900,-200);
+        LineTo lineTo6 = new LineTo(1150,-200);
+        LineTo lineTo7 = new LineTo(1150,-480);
+        LineTo lineTo8 = new LineTo(900,-480);
+
+        MoveTo moveTo2 = new MoveTo(900,50);
+
+        Path path_Ultron = new Path(moveTo2,lineTo5,lineTo6,lineTo7,lineTo8);
+
+        PathTransition forUltron = new PathTransition(Duration.seconds(8),path_Ultron,Ultron);
+        forUltron.setCycleCount(PathTransition.INDEFINITE);
+        forUltron.setAutoReverse(true);
+        forUltron.play();
+
+
+        //MOVEMENT OF VILLAIN 3 (LOKI)
+        Image loki = new Image("/pics/Loki.jpg");
+        Loki = new ImageView(loki);
+        enemy.add(Loki);
+        Loki.setFitHeight(80);
+        Loki.setFitWidth(30);
+        Loki.relocate(58,542);
+
+        //LineTo lineTo9 = new LineTo(850,100);
+        LineTo lineTo10 = new LineTo(850,-50);
+        LineTo lineTo11 = new LineTo(600,-50);
+        LineTo lineTo12 = new LineTo(600,150);
+        LineTo lineTo13 = new LineTo(450,150);
+        LineTo lineTo14 = new LineTo(450,-20);
+        LineTo lineTo15 = new LineTo(350,-20);
+
+        MoveTo moveTo3 = new MoveTo(850,100);
+
+        Path path_Loki = new Path(moveTo3,lineTo10,lineTo11,lineTo12,lineTo13,lineTo14,lineTo15);
+
+        PathTransition forLoki = new PathTransition(Duration.seconds(7),path_Loki,Loki);
+        forLoki.setCycleCount(PathTransition.INDEFINITE);
+        forLoki.setAutoReverse(true);
+        forLoki.play();
+
 
 
 
@@ -467,7 +548,7 @@ public class window{
         Image soulStone = new Image("/pics/SoulStone.png");
         ImageView Soul = new ImageView(soulStone);
         stoneList.add(Soul);
-        Soul.setFitHeight(30);
+        Soul.setFitHeight(35);
         Soul.setFitWidth(30);
         Soul.setX(31);
         Soul.setY(80);
@@ -475,15 +556,15 @@ public class window{
         Image powerStone = new Image("/pics/PowerStone.png");
         ImageView Power = new ImageView(powerStone);
         stoneList.add(Power);
-        Power.setFitHeight(30);
-        Power.setFitWidth(30);
+        Power.setFitHeight(35);
+        Power.setFitWidth(27);
         Power.setX(14);
         Power.setY(675);
 
         Image realityStone = new Image("/pics/RealityStone.png");
         ImageView Reality = new ImageView(realityStone);
         stoneList.add(Reality);
-        Reality.setFitHeight(30);
+        Reality.setFitHeight(35);
         Reality.setFitWidth(30);
         Reality.setX(342);
         Reality.setY(577);
@@ -491,7 +572,7 @@ public class window{
         Image spaceStone = new Image("/pics/SpaceStone.png");
         ImageView Space = new ImageView(spaceStone);
         stoneList.add(Space);
-        Space.setFitHeight(30);
+        Space.setFitHeight(35);
         Space.setFitWidth(30);
         Space.setX(915);
         Space.setY(112);
@@ -499,18 +580,21 @@ public class window{
         Image mindStone = new Image("/pics/MindStone.png");
         ImageView Mind = new ImageView(mindStone);
         stoneList.add(Mind);
-        Mind.setFitHeight(30);
+        Mind.setFitHeight(35);
         Mind.setFitWidth(30);
         Mind.setX(1130);
         Mind.setY(490);
 
-        Image timeStone = new Image("/pics/TimeStone.png");
+        Image timeStone = new Image("/pics/Timestone.png");
         ImageView Time = new ImageView(timeStone);
         stoneList.add(Time);
-        Time.setFitHeight(30);
+        Time.setFitHeight(35);
         Time.setFitWidth(30);
         Time.setX(491);
         Time.setY(320);
+
+
+
 
         //THOR collecting stones.
         thor = new Image("/pics/Thor.png");
@@ -560,8 +644,10 @@ public class window{
         pane = new AnchorPane(h);
         pane.setMinHeight(800);
         pane.setMinWidth(1300);
+        pane.setMaxHeight(800);
+        pane.setMaxWidth(1300);
         pane.setBottomAnchor(h,0.0);
-        pane.getChildren().addAll(BackGround,Thor,
+        pane.getChildren().addAll(BackGround,Thor,Thanos,Ultron,Loki,
                 Soul,Reality,Time,Mind,Space,Power,
                 Obs1,Obs2,Obs3,Obs4,
                 B1,B2,B3,S1,S2,S3,S4,S5,S6,S7,St1,
@@ -642,6 +728,10 @@ public class window{
         timer.start();
     }
 
+
+
+
+
     //Collision with Enemy
     public void checkEnemy(){
         for(ImageView f:enemy) {
@@ -651,6 +741,7 @@ public class window{
             }
         }
     }
+
 
 
 
@@ -665,6 +756,7 @@ public class window{
 
 
 
+
     //For Background Music
     public void start(Stage s) throws Exception{
         //leave empty
@@ -674,7 +766,7 @@ public class window{
 
     MediaPlayer mediaplayer;
     public void music(){
-        String s="C:\\Users\\Admin\\IdeaProjects\\Experimental\\src\\music\\music.mp3";
+        String s="E:\\Java_Project\\src\\music\\music.mp3";
         Media h= new Media(Paths.get(s).toUri().toString());
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();
@@ -700,10 +792,6 @@ public class window{
 
 
 
-
-
-
-
     //Collision with Block
     public void checkBlock(){
         for(ImageView b:obstacle) {
@@ -722,3 +810,4 @@ public class window{
 
 
 }
+
