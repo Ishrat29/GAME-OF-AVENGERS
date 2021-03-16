@@ -8,8 +8,10 @@ import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -48,6 +50,9 @@ public class window{
     private static int j=0;
     private static Assets assets;
     private static ArrayList<ImageView> enemy;
+    protected static final double pos_x=81;
+    protected static final double pos_y=81;
+
 
     window(){
 
@@ -134,6 +139,25 @@ public class window{
         forB4.setCycleCount(PathTransition.INDEFINITE);
         forB4.setAutoReverse(true);
         forB4.play();
+
+
+        //MOVEMENT OF OBSTACLE 5
+        Image o5= new Image("/pics/Tressaract.jpg");
+        ImageView Obs5 = new ImageView(o5);
+        obstacle.add(Obs5);
+        Obs5.setFitHeight(22);
+        Obs5.setFitWidth(22);
+        Obs5.setX(33);
+        Obs5.setY(23);
+
+        Path pathB5 = new Path();
+        pathB5.getElements().add(new MoveTo(230,25));
+        pathB5.getElements().add(new VLineTo(600));
+
+        PathTransition forB5= new PathTransition(Duration.seconds(2),pathB5,Obs5);
+        forB5.setCycleCount(PathTransition.INDEFINITE);
+        forB5.setAutoReverse(true);
+        forB5.play();
 
 
 
@@ -548,7 +572,7 @@ public class window{
         Image soulStone = new Image("/pics/SoulStone.png");
         ImageView Soul = new ImageView(soulStone);
         stoneList.add(Soul);
-        Soul.setFitHeight(35);
+        Soul.setFitHeight(30);
         Soul.setFitWidth(30);
         Soul.setX(31);
         Soul.setY(80);
@@ -556,15 +580,15 @@ public class window{
         Image powerStone = new Image("/pics/PowerStone.png");
         ImageView Power = new ImageView(powerStone);
         stoneList.add(Power);
-        Power.setFitHeight(35);
-        Power.setFitWidth(27);
+        Power.setFitHeight(30);
+        Power.setFitWidth(30);
         Power.setX(14);
         Power.setY(675);
 
         Image realityStone = new Image("/pics/RealityStone.png");
         ImageView Reality = new ImageView(realityStone);
         stoneList.add(Reality);
-        Reality.setFitHeight(35);
+        Reality.setFitHeight(30);
         Reality.setFitWidth(30);
         Reality.setX(342);
         Reality.setY(577);
@@ -572,7 +596,7 @@ public class window{
         Image spaceStone = new Image("/pics/SpaceStone.png");
         ImageView Space = new ImageView(spaceStone);
         stoneList.add(Space);
-        Space.setFitHeight(35);
+        Space.setFitHeight(30);
         Space.setFitWidth(30);
         Space.setX(915);
         Space.setY(112);
@@ -580,7 +604,7 @@ public class window{
         Image mindStone = new Image("/pics/MindStone.png");
         ImageView Mind = new ImageView(mindStone);
         stoneList.add(Mind);
-        Mind.setFitHeight(35);
+        Mind.setFitHeight(30);
         Mind.setFitWidth(30);
         Mind.setX(1130);
         Mind.setY(490);
@@ -588,7 +612,7 @@ public class window{
         Image timeStone = new Image("/pics/Timestone.png");
         ImageView Time = new ImageView(timeStone);
         stoneList.add(Time);
-        Time.setFitHeight(35);
+        Time.setFitHeight(30);
         Time.setFitWidth(30);
         Time.setX(491);
         Time.setY(320);
@@ -649,7 +673,7 @@ public class window{
         pane.setBottomAnchor(h,0.0);
         pane.getChildren().addAll(BackGround,Thor,Thanos,Ultron,Loki,
                 Soul,Reality,Time,Mind,Space,Power,
-                Obs1,Obs2,Obs3,Obs4,
+                Obs1,Obs2,Obs3,Obs4,Obs5,
                 B1,B2,B3,S1,S2,S3,S4,S5,S6,S7,St1,
                 St2,St3,St4,St5,St6,B4,B5,B6,St7,St8,St9,Br1,Br2,Br3,Br4,Stk1,Stk2,
                 Stk3,Stk4,Stk5,Stk6,Stk7,Br5,Br6,t1,t2);
@@ -669,6 +693,8 @@ public class window{
 
 
 
+
+
         //MOVING OUR HERO THROUGH KEYBOARD
         scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
             @Override
@@ -682,6 +708,7 @@ public class window{
             }
         });
 
+
         scene.setOnKeyReleased(new EventHandler<KeyEvent>(){
             @Override
             public void handle(KeyEvent event) {
@@ -693,6 +720,8 @@ public class window{
                 }
             }
         });
+
+
 
         AnimationTimer timer = new AnimationTimer(){
             double delta = 4;
@@ -710,22 +739,58 @@ public class window{
                 if(goDown){
                     currY+=delta;
                     checkCollision();
+
                 }
                 if(goLeft){
                     currX-=delta;
                     checkCollision();
 
+
                 }
                 if(goRight){
                     currX+=delta;
                     checkCollision();
+
                 }
+                SetBoundaries();
                 if(!checkBlock(currX,currY))
                     Thor.relocate(currX,currY);
 
             }
         };
         timer.start();
+    }
+
+
+
+
+
+   //Setting Boundary so the character don't go outside//
+
+    public static double RightBoundary = 1280;
+    public static double LeftBoundary = 0;
+    public static double BottomBoundary = 690;
+    public static double TopBoundary = 0;
+
+
+    public void SetBoundaries(){
+        if(currX>=RightBoundary)
+        {
+            currX=RightBoundary;
+        }
+      else  if(currX<=LeftBoundary)
+        {
+            currX=LeftBoundary;
+        }
+     else   if(currY>=BottomBoundary)
+        {
+            currY=BottomBoundary;
+        }
+     else   if(currY<=TopBoundary)
+        {
+            currY=TopBoundary;
+        }
+
     }
 
 
@@ -744,7 +809,7 @@ public class window{
 
 
 
-
+//Maze as barrier
     public boolean checkBlock(double x,double y) {
         for (ImageView b : block) {
             if(b.intersects(x,y,25,60))
@@ -754,6 +819,20 @@ public class window{
         return false;
     }
 
+/*
+  //setting boundary
+   public void SetBoundaries()
+   {
+      if(currX>=1300)
+          currX=1300;
+      else if(currX<=0)
+          currX=0;
+      else if(currY>=800)
+          currY=800;
+      else if(currY<=0)
+          currY=0;
+   }
+*/
 
 
 
@@ -766,7 +845,7 @@ public class window{
 
     MediaPlayer mediaplayer;
     public void music(){
-        String s="E:\\Java_Project\\src\\music\\music.mp3";
+        String s="C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\music\\music.mp3";
         Media h= new Media(Paths.get(s).toUri().toString());
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();
@@ -808,6 +887,6 @@ public class window{
         }
     }
 
+    }
 
-}
 
