@@ -574,8 +574,8 @@ public class window{
         stoneList.add(Soul);
         Soul.setFitHeight(30);
         Soul.setFitWidth(30);
-        Soul.setX(31);
-        Soul.setY(80);
+        Soul.setX(800);
+        Soul.setY(180);
 
         Image powerStone = new Image("/pics/PowerStone.png");
         ImageView Power = new ImageView(powerStone);
@@ -687,6 +687,7 @@ public class window{
         scene.getRoot().requestFocus();
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
         music();
 

@@ -94,6 +94,14 @@ public class Experimental extends Application {
         Button btn_help = new Button("",Help);
         btn_help.setStyle("-fx-background-color: Black");
 
+        btn_help.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Help box = new Help();
+                //stage.close();
+            }
+        });
+
 
 
 
@@ -130,6 +138,7 @@ public class Experimental extends Application {
 
         Scene scene = new Scene(pane);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
