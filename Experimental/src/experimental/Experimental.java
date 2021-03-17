@@ -32,6 +32,7 @@ public class Experimental extends Application {
         BorderPane pane = new BorderPane();
         pane.setMinHeight(400);
         pane.setMinWidth(749);
+        pane.setStyle("-fx-background-color: Black");
 
 
         Text txt = new Text("Welcome To The World Of Avengers!!!");
@@ -52,7 +53,7 @@ public class Experimental extends Application {
 
         // here goes the play button
         //image for button
-        FileInputStream input1 = new FileInputStream("C:\\Users\\Admin\\IdeaProjects\\Experimental\\src\\pics\\Play.png");
+        FileInputStream input1 = new FileInputStream("E:\\Java_Project\\src\\pics\\Play.png");
         Image play_button = new Image(input1);
         ImageView Play = new ImageView(play_button);
 
@@ -70,7 +71,7 @@ public class Experimental extends Application {
 
         // here goes the exit button
         //image for button
-        FileInputStream input2 = new FileInputStream("C:\\Users\\Admin\\IdeaProjects\\Experimental\\src\\pics\\Exit.jpg");
+        FileInputStream input2 = new FileInputStream("E:\\Java_Project\\src\\pics\\Exit.jpg");
         Image exit_button = new Image(input2);
         ImageView Exit = new ImageView(exit_button);
 
@@ -87,7 +88,7 @@ public class Experimental extends Application {
 
         // here goes the Help button
         //image for button
-        FileInputStream input3 = new FileInputStream("C:\\Users\\Admin\\IdeaProjects\\Experimental\\src\\pics\\Help.jpg");
+        FileInputStream input3 = new FileInputStream("E:\\Java_Project\\src\\pics\\Help.jpg");
         Image help_button = new Image(input3);
         ImageView Help = new ImageView(help_button);
 
@@ -112,9 +113,10 @@ public class Experimental extends Application {
         h.setAlignment(Pos.CENTER);
         h.setStyle("-fx-background-color: Black");
 
+
         h.getChildren().addAll(btn_exit,btn_help);
 
-        Image ig = new Image("/pics/Avenger.jpg");
+        Image ig = new Image("/pics/first_background.jpg");
         ImageView i = new ImageView(ig);
         i.setX(0);
         i.setY(0);

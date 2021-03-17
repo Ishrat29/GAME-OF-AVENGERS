@@ -32,6 +32,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 
 
 public class window{
@@ -625,12 +626,12 @@ public class window{
         Thor = new ImageView(thor);
         Thor.setFitHeight(60);
         Thor.setFitWidth(25);
-        Thor.relocate(1100,300);
+        Thor.relocate(1050,400);
         Image hulk = new Image("/pics/Hulk.jpg");
         Hulk = new ImageView(hulk);
         Hulk.setFitHeight(60);
         Hulk.setFitWidth(25);
-        Hulk.relocate(1100,300);
+        Hulk.relocate(1050,400);
         t1 = new Text();
         t1.setText("Score:");
         t1.setFont(new Font("Italic",34));
@@ -670,6 +671,7 @@ public class window{
         pane.setMinWidth(1300);
         pane.setMaxHeight(800);
         pane.setMaxWidth(1300);
+        pane.setStyle("-fx-background-color: Black");
         pane.setBottomAnchor(h,0.0);
         pane.getChildren().addAll(BackGround,Thor,Thanos,Ultron,Loki,
                 Soul,Reality,Time,Mind,Space,Power,
@@ -766,7 +768,7 @@ public class window{
 
 
 
-   //Setting Boundary so the character don't go outside//
+    //Setting Boundary so the character don't go outside//
 
     public static double RightBoundary = 1280;
     public static double LeftBoundary = 0;
@@ -779,15 +781,15 @@ public class window{
         {
             currX=RightBoundary;
         }
-      else  if(currX<=LeftBoundary)
+        else  if(currX<=LeftBoundary)
         {
             currX=LeftBoundary;
         }
-     else   if(currY>=BottomBoundary)
+        else   if(currY>=BottomBoundary)
         {
             currY=BottomBoundary;
         }
-     else   if(currY<=TopBoundary)
+        else   if(currY<=TopBoundary)
         {
             currY=TopBoundary;
         }
@@ -802,7 +804,15 @@ public class window{
     public void checkEnemy(){
         for(ImageView f:enemy) {
             if (Thor.getBoundsInParent().intersects(f.getBoundsInParent())) {
-                JOptionPane.showConfirmDialog(null,"You Lost \n Do you want to continue!!");
+                /*JOptionPane.showConfirmDialog(null,"You Lost \n Do you want to continue!!");
+                System.exit(0);*/
+
+                /*JOptionPane.showMessageDialog(null,
+                        "<html><font face='ROG Fonts' size='15' color='red'>Game Over");
+                System.exit(0);*/
+
+                ImageIcon icon = new ImageIcon("Game_over.jpg");
+                JOptionPane.showMessageDialog(null,"","",JOptionPane.INFORMATION_MESSAGE,icon);
                 System.exit(0);
             }
         }
@@ -810,7 +820,7 @@ public class window{
 
 
 
-//Maze as barrier
+    //Maze as barrier
     public boolean checkBlock(double x,double y) {
         for (ImageView b : block) {
             if(b.intersects(x,y,25,60))
@@ -846,7 +856,7 @@ public class window{
 
     MediaPlayer mediaplayer;
     public void music(){
-        String s="C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\music\\music.mp3";
+        String s="E:\\Java_Project\\src\\music\\music.mp3";
         Media h= new Media(Paths.get(s).toUri().toString());
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();
@@ -878,16 +888,17 @@ public class window{
             if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j<5) {
                 j++;
                 Thor.setImage(assets.getHero());
-                Thor.relocate(1100,300);
+                Thor.relocate(1050,400);
                 break;
             }
             else if(j==5){
-                JOptionPane.showConfirmDialog(null,"You are Out of Hero!!\n Do you want to contiue!!");
+                ImageIcon icon = new ImageIcon("Game_over.jpg");
+                JOptionPane.showMessageDialog(null,"","",JOptionPane.INFORMATION_MESSAGE,icon);
                 System.exit(0);
             }
         }
     }
 
-    }
+}
 
 
