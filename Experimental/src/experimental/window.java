@@ -7,6 +7,7 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
@@ -29,6 +30,7 @@ import javafx.scene.shape.VLineTo;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import javax.swing.*;
@@ -51,9 +53,7 @@ public class window{
     private static int j=0;
     private static Assets assets;
     private static ArrayList<ImageView> enemy;
-    protected static final double pos_x=81;
-    protected static final double pos_y=81;
-
+   
 
     window(){
 
@@ -66,7 +66,7 @@ public class window{
 
 
 
-        //MOVEMENT OF OBSTACLE 1
+        //MOVEMENT OF OBSTACLE 1\\
         Image o1 = new Image("/pics/Tressaract.jpg");
         ImageView Obs1 = new ImageView(o1);
         obstacle.add(Obs1);
@@ -85,7 +85,7 @@ public class window{
         forB1.play();
 
 
-        //MOVEMENT OF OBSTACLE 2
+        //MOVEMENT OF OBSTACLE 2\\
         Image o2 = new Image("/pics/Tressaract.jpg");
         ImageView Obs2 = new ImageView(o2);
         obstacle.add(Obs1);
@@ -104,7 +104,7 @@ public class window{
         forB2.play();
 
 
-        //MOVEMENT OF OBSTACLE 3
+        //MOVEMENT OF OBSTACLE 3\\
         Image o3 = new Image("/pics/Tressaract.jpg");
         ImageView Obs3 = new ImageView(o3);
         obstacle.add(Obs3);
@@ -123,7 +123,7 @@ public class window{
         forB3.play();
 
 
-        //MOVEMENT OF OBSTACLE 4
+        //MOVEMENT OF OBSTACLE 4\\
         Image o4 = new Image("/pics/Tressaract.jpg");
         ImageView Obs4 = new ImageView(o4);
         obstacle.add(Obs4);
@@ -142,7 +142,8 @@ public class window{
         forB4.play();
 
 
-        //MOVEMENT OF OBSTACLE 5
+
+        //MOVEMENT OF OBSTACLE 5\\
         Image o5= new Image("/pics/Tressaract.jpg");
         ImageView Obs5 = new ImageView(o5);
         obstacle.add(Obs5);
@@ -240,7 +241,7 @@ public class window{
 
 
 
-        //HBOX BELOW THE WINDOW
+        //HBOX BELOW THE WINDOW\\
         HBox h = new HBox();
         h.setMinHeight(50);
         h.setMinWidth(1300);
@@ -250,7 +251,7 @@ public class window{
 
 
 
-        //BACKGROUND IMAGE
+        //BACKGROUND IMAGE\\
         Image img = new Image("/pics/Background.jpg");
         ImageView BackGround = new ImageView(img);
         BackGround.setFitHeight(750);
@@ -260,7 +261,7 @@ public class window{
 
 
 
-        //HERE COMES OUR HERO !!!!
+        //HERE COMES OUR HERO !!!!\\
         Image thor = new Image("/pics/Thor.png");
         Thor = new ImageView(thor);
         Thor.setFitHeight(60);
@@ -273,7 +274,7 @@ public class window{
 
 
 
-        //SETTING UP THE MAZE
+        //SETTING UP THE MAZE\\
 
         block=new ArrayList<>();
 
@@ -569,7 +570,7 @@ public class window{
 
 
 
-        //SETTING UP STONES
+        //SETTING UP STONES\\
         Image soulStone = new Image("/pics/SoulStone.png");
         ImageView Soul = new ImageView(soulStone);
         stoneList.add(Soul);
@@ -621,17 +622,17 @@ public class window{
 
 
 
-        //THOR collecting stones.
+        //THOR collecting stones\\
         thor = new Image("/pics/Thor.png");
         Thor = new ImageView(thor);
         Thor.setFitHeight(60);
         Thor.setFitWidth(25);
-        Thor.relocate(1050,400);
+        Thor.relocate(1065,400);
         Image hulk = new Image("/pics/Hulk.jpg");
         Hulk = new ImageView(hulk);
         Hulk.setFitHeight(60);
         Hulk.setFitWidth(25);
-        Hulk.relocate(1050,400);
+        Hulk.relocate(1065,400);
         t1 = new Text();
         t1.setText("Score:");
         t1.setFont(new Font("Italic",34));
@@ -650,7 +651,7 @@ public class window{
 
 
 
-        //EXIT BUTTON AND ACTION
+        //EXIT BUTTON AND ACTION\\
         Button btn = new Button("EXIT");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -665,7 +666,7 @@ public class window{
 
 
 
-        //ADDING ALL THE ELEMENTS TO OUR ANCHORPANE
+        //ADDING ALL THE ELEMENTS TO OUR ANCHORPANE\\
         pane = new AnchorPane(h);
         pane.setMinHeight(800);
         pane.setMinWidth(1300);
@@ -684,7 +685,7 @@ public class window{
 
 
 
-        //SHOWING THE SCENE
+        //SHOWING THE SCENE\\
         Scene scene = new Scene(pane);
         scene.getRoot().requestFocus();
         Stage stage = new Stage();
@@ -698,7 +699,7 @@ public class window{
 
 
 
-        //MOVING OUR HERO THROUGH KEYBOARD
+        //MOVING OUR HERO THROUGH KEYBOARD\\
         scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
             @Override
             public void handle(KeyEvent event) {
@@ -768,7 +769,8 @@ public class window{
 
 
 
-    //Setting Boundary so the character don't go outside//
+
+    //Setting Boundary so the character don't go outside\\
 
     public static double RightBoundary = 1280;
     public static double LeftBoundary = 0;
@@ -800,27 +802,25 @@ public class window{
 
 
 
-    //Collision with Enemy
+
+    //Collision with Enemy\\
     public void checkEnemy(){
         for(ImageView f:enemy) {
             if (Thor.getBoundsInParent().intersects(f.getBoundsInParent())) {
-                /*JOptionPane.showConfirmDialog(null,"You Lost \n Do you want to continue!!");
-                System.exit(0);*/
-
-                /*JOptionPane.showMessageDialog(null,
-                        "<html><font face='ROG Fonts' size='15' color='red'>Game Over");
-                System.exit(0);*/
 
                 ImageIcon icon = new ImageIcon("Game_over.jpg");
                 JOptionPane.showMessageDialog(null,"","",JOptionPane.INFORMATION_MESSAGE,icon);
                 System.exit(0);
+
             }
         }
     }
 
 
 
-    //Maze as barrier
+
+
+    //Maze as barrier\\
     public boolean checkBlock(double x,double y) {
         for (ImageView b : block) {
             if(b.intersects(x,y,25,60))
@@ -830,24 +830,11 @@ public class window{
         return false;
     }
 
-/*
-  //setting boundary
-   public void SetBoundaries()
-   {
-      if(currX>=1300)
-          currX=1300;
-      else if(currX<=0)
-          currX=0;
-      else if(currY>=800)
-          currY=800;
-      else if(currY<=0)
-          currY=0;
-   }
-*/
 
 
 
-    //For Background Music
+
+    //For Background Music\\
     public void start(Stage s) throws Exception{
         //leave empty
     }
@@ -856,11 +843,12 @@ public class window{
 
     MediaPlayer mediaplayer;
     public void music(){
-        String s="E:\\Java_Project\\src\\music\\music.mp3";
+        String s="C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\music\\music.mp3";
         Media h= new Media(Paths.get(s).toUri().toString());
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();
     }
+
 
 
 
@@ -877,8 +865,16 @@ public class window{
                 pane.getChildren().remove(e);
                 break;
             }
+            if (s == 100) {
+                LevelSwap();
+                }
+            }
         }
-    }
+
+
+
+
+
 
 
 
@@ -888,7 +884,7 @@ public class window{
             if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j<5) {
                 j++;
                 Thor.setImage(assets.getHero());
-                Thor.relocate(1050,400);
+                Thor.relocate(1065,400);
                 break;
             }
             else if(j==5){
@@ -899,6 +895,23 @@ public class window{
         }
     }
 
+
+
+
+
+
+
+
+
+//LEVEL SWAP\\
+public void LevelSwap() {
+    s = 0;
+    ImageIcon icon = new ImageIcon("win.jpg");
+    int k = JOptionPane.showConfirmDialog(null, "", "", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION, icon);
+    if (k == JOptionPane.YES_OPTION) {
+
+        level box = new level();
+    }
+    else System.exit(0);
 }
-
-
+}
