@@ -7,13 +7,12 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,40 +29,39 @@ import javafx.scene.shape.VLineTo;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
 
 
-public class window{
+public class window {
 
-    private ArrayList<ImageView> stoneList,block,obstacle;
-    public ImageView Thor,Time,Hulk,Hero;
-    public ImageView Thanos,Ultron,Loki;
-    boolean goUp,goDown,goRight,goLeft;
-    public Rectangle2D r,r1;
+    private ArrayList<ImageView> stoneList, block, obstacle, life;
+    public ImageView Thor, Time, Hulk, Hero;
+    public ImageView Thanos, Ultron, Loki;
+    boolean goUp, goDown, goRight, goLeft;
+    public Rectangle2D r, r1;
     private AnchorPane pane;
+    private Stage stage;
     private final Text t1;
     private final Text t2;
-    private int s=0;
+    private int s = 0;
     public ImageView Block13;
-    public double currX,currY;
-    private static int j=0;
+    public double currX, currY;
+    private static int j = 0,m=0;
     private static Assets assets;
     private static ArrayList<ImageView> enemy;
-   
-
-    window(){
 
 
-        assets=new Assets();
-        enemy=new ArrayList<>();
-        stoneList=new ArrayList<>();
-        block=new ArrayList<>();
+    window() {
+
+
+        assets = new Assets();
+        enemy = new ArrayList<>();
+        stoneList = new ArrayList<>();
+        block = new ArrayList<>();
         obstacle = new ArrayList<>();
-
+        life = new ArrayList<>();
 
 
         //MOVEMENT OF OBSTACLE 1\\
@@ -76,10 +74,10 @@ public class window{
         Obs1.setY(23);
 
         Path pathB1 = new Path();
-        pathB1.getElements().add(new MoveTo(33,23));
+        pathB1.getElements().add(new MoveTo(33, 23));
         pathB1.getElements().add(new VLineTo(709));
 
-        PathTransition forB1 = new PathTransition(Duration.seconds(1.5),pathB1,Obs1);
+        PathTransition forB1 = new PathTransition(Duration.seconds(1.5), pathB1, Obs1);
         forB1.setCycleCount(PathTransition.INDEFINITE);
         forB1.setAutoReverse(true);
         forB1.play();
@@ -95,10 +93,10 @@ public class window{
         Obs2.setY(23);
 
         Path pathB2 = new Path();
-        pathB2.getElements().add(new MoveTo(529,111));
+        pathB2.getElements().add(new MoveTo(529, 111));
         pathB2.getElements().add(new VLineTo(650));
 
-        PathTransition forB2 = new PathTransition(Duration.seconds(1),pathB2,Obs2);
+        PathTransition forB2 = new PathTransition(Duration.seconds(1), pathB2, Obs2);
         forB2.setCycleCount(PathTransition.INDEFINITE);
         forB2.setAutoReverse(true);
         forB2.play();
@@ -114,10 +112,10 @@ public class window{
         Obs3.setY(23);
 
         Path pathB3 = new Path();
-        pathB3.getElements().add(new MoveTo(770,143));
+        pathB3.getElements().add(new MoveTo(770, 143));
         pathB3.getElements().add(new VLineTo(739));
 
-        PathTransition forB3 = new PathTransition(Duration.seconds(2),pathB3,Obs3);
+        PathTransition forB3 = new PathTransition(Duration.seconds(2), pathB3, Obs3);
         forB3.setCycleCount(PathTransition.INDEFINITE);
         forB3.setAutoReverse(true);
         forB3.play();
@@ -133,18 +131,17 @@ public class window{
         Obs4.setY(23);
 
         Path pathB4 = new Path();
-        pathB4.getElements().add(new MoveTo(1217,58));
+        pathB4.getElements().add(new MoveTo(1217, 58));
         pathB4.getElements().add(new VLineTo(659));
 
-        PathTransition forB4 = new PathTransition(Duration.seconds(2),pathB4,Obs4);
+        PathTransition forB4 = new PathTransition(Duration.seconds(2), pathB4, Obs4);
         forB4.setCycleCount(PathTransition.INDEFINITE);
         forB4.setAutoReverse(true);
         forB4.play();
 
 
-
         //MOVEMENT OF OBSTACLE 5\\
-        Image o5= new Image("/pics/Tressaract.jpg");
+        Image o5 = new Image("/pics/Tressaract.jpg");
         ImageView Obs5 = new ImageView(o5);
         obstacle.add(Obs5);
         Obs5.setFitHeight(22);
@@ -153,16 +150,13 @@ public class window{
         Obs5.setY(23);
 
         Path pathB5 = new Path();
-        pathB5.getElements().add(new MoveTo(230,25));
+        pathB5.getElements().add(new MoveTo(230, 25));
         pathB5.getElements().add(new VLineTo(600));
 
-        PathTransition forB5= new PathTransition(Duration.seconds(2),pathB5,Obs5);
+        PathTransition forB5 = new PathTransition(Duration.seconds(2), pathB5, Obs5);
         forB5.setCycleCount(PathTransition.INDEFINITE);
         forB5.setAutoReverse(true);
         forB5.play();
-
-
-
 
 
         //MOVEMENT OF VILLAIN 1 (THANOS)
@@ -171,19 +165,19 @@ public class window{
         enemy.add(Thanos);
         Thanos.setFitHeight(70);
         Thanos.setFitWidth(30);
-        Thanos.relocate(58,542);
+        Thanos.relocate(58, 542);
 
-        LineTo lineTo = new LineTo(50,-300);
-        LineTo lineTo1 = new LineTo(350,-300);
-        LineTo lineTo2 = new LineTo(350,-500);
-        LineTo lineTo3 = new LineTo(675,-500);
-        LineTo lineTo4 = new LineTo(675,100);
+        LineTo lineTo = new LineTo(50, -300);
+        LineTo lineTo1 = new LineTo(350, -300);
+        LineTo lineTo2 = new LineTo(350, -500);
+        LineTo lineTo3 = new LineTo(675, -500);
+        LineTo lineTo4 = new LineTo(675, 100);
 
-        MoveTo moveTo = new MoveTo(50,100);
+        MoveTo moveTo = new MoveTo(50, 100);
 
-        Path path_Thanos = new Path(moveTo,lineTo,lineTo1,lineTo2,lineTo3,lineTo4);
+        Path path_Thanos = new Path(moveTo, lineTo, lineTo1, lineTo2, lineTo3, lineTo4);
 
-        PathTransition forThanos = new PathTransition(Duration.seconds(10),path_Thanos,Thanos);
+        PathTransition forThanos = new PathTransition(Duration.seconds(10), path_Thanos, Thanos);
         forThanos.setCycleCount(PathTransition.INDEFINITE);
         forThanos.setAutoReverse(true);
         forThanos.play();
@@ -195,18 +189,18 @@ public class window{
         enemy.add(Ultron);
         Ultron.setFitHeight(70);
         Ultron.setFitWidth(30);
-        Ultron.relocate(58,542);
+        Ultron.relocate(58, 542);
 
-        LineTo lineTo5 = new LineTo(900,-200);
-        LineTo lineTo6 = new LineTo(1150,-200);
-        LineTo lineTo7 = new LineTo(1150,-480);
-        LineTo lineTo8 = new LineTo(900,-480);
+        LineTo lineTo5 = new LineTo(900, -200);
+        LineTo lineTo6 = new LineTo(1150, -200);
+        LineTo lineTo7 = new LineTo(1150, -480);
+        LineTo lineTo8 = new LineTo(900, -480);
 
-        MoveTo moveTo2 = new MoveTo(900,50);
+        MoveTo moveTo2 = new MoveTo(900, 50);
 
-        Path path_Ultron = new Path(moveTo2,lineTo5,lineTo6,lineTo7,lineTo8);
+        Path path_Ultron = new Path(moveTo2, lineTo5, lineTo6, lineTo7, lineTo8);
 
-        PathTransition forUltron = new PathTransition(Duration.seconds(8),path_Ultron,Ultron);
+        PathTransition forUltron = new PathTransition(Duration.seconds(8), path_Ultron, Ultron);
         forUltron.setCycleCount(PathTransition.INDEFINITE);
         forUltron.setAutoReverse(true);
         forUltron.play();
@@ -218,27 +212,24 @@ public class window{
         enemy.add(Loki);
         Loki.setFitHeight(80);
         Loki.setFitWidth(30);
-        Loki.relocate(58,542);
+        Loki.relocate(58, 542);
 
         //LineTo lineTo9 = new LineTo(850,100);
-        LineTo lineTo10 = new LineTo(850,-50);
-        LineTo lineTo11 = new LineTo(600,-50);
-        LineTo lineTo12 = new LineTo(600,150);
-        LineTo lineTo13 = new LineTo(450,150);
-        LineTo lineTo14 = new LineTo(450,-20);
-        LineTo lineTo15 = new LineTo(350,-20);
+        LineTo lineTo10 = new LineTo(850, -50);
+        LineTo lineTo11 = new LineTo(600, -50);
+        LineTo lineTo12 = new LineTo(600, 150);
+        LineTo lineTo13 = new LineTo(450, 150);
+        LineTo lineTo14 = new LineTo(450, -20);
+        LineTo lineTo15 = new LineTo(350, -20);
 
-        MoveTo moveTo3 = new MoveTo(850,100);
+        MoveTo moveTo3 = new MoveTo(850, 100);
 
-        Path path_Loki = new Path(moveTo3,lineTo10,lineTo11,lineTo12,lineTo13,lineTo14,lineTo15);
+        Path path_Loki = new Path(moveTo3, lineTo10, lineTo11, lineTo12, lineTo13, lineTo14, lineTo15);
 
-        PathTransition forLoki = new PathTransition(Duration.seconds(7),path_Loki,Loki);
+        PathTransition forLoki = new PathTransition(Duration.seconds(7), path_Loki, Loki);
         forLoki.setCycleCount(PathTransition.INDEFINITE);
         forLoki.setAutoReverse(true);
         forLoki.play();
-
-
-
 
 
         //HBOX BELOW THE WINDOW\\
@@ -249,8 +240,6 @@ public class window{
         h.setStyle("-fx-background-color:black");
 
 
-
-
         //BACKGROUND IMAGE\\
         Image img = new Image("/pics/Background.jpg");
         ImageView BackGround = new ImageView(img);
@@ -258,25 +247,17 @@ public class window{
         BackGround.setFitWidth(1300);
 
 
-
-
-
         //HERE COMES OUR HERO !!!!\\
         Image thor = new Image("/pics/Thor.png");
         Thor = new ImageView(thor);
         Thor.setFitHeight(60);
         Thor.setFitWidth(25);
-        Thor.relocate(1100,300);
-
-
-
-
-
+        Thor.relocate(1100, 300);
 
 
         //SETTING UP THE MAZE\\
 
-        block=new ArrayList<>();
+        block = new ArrayList<>();
 
         Image b1 = new Image("/pics/red bricks.png");
         ImageView B1 = new ImageView(b1);
@@ -301,8 +282,6 @@ public class window{
         B3.setFitWidth(65);
         B3.setX(256);
         B3.setY(300);
-
-
 
 
         Image s1 = new Image("/pics/red stack.png");
@@ -459,8 +438,6 @@ public class window{
         St9.setY(140);
 
 
-
-
         Image br1 = new Image("/pics/red bricks.png");
         ImageView Br1 = new ImageView(br1);
         block.add(Br1);
@@ -566,10 +543,6 @@ public class window{
         Br6.setY(470);
 
 
-
-
-
-
         //SETTING UP STONES\\
         Image soulStone = new Image("/pics/SoulStone.png");
         ImageView Soul = new ImageView(soulStone);
@@ -620,6 +593,16 @@ public class window{
         Time.setY(320);
 
 
+     /*   Image life = new Image("/pics/safegurd.png");
+        ImageView l1 = new ImageView(life);
+        stoneList.add(l1);
+        l1.setFitHeight(70);
+        l1.setFitWidth(40);
+        l1.setX(1000);
+        l1.setY(500); */
+
+
+
 
 
         //THOR collecting stones\\
@@ -627,15 +610,15 @@ public class window{
         Thor = new ImageView(thor);
         Thor.setFitHeight(60);
         Thor.setFitWidth(25);
-        Thor.relocate(1065,400);
+        Thor.relocate(1065, 400);
         Image hulk = new Image("/pics/Hulk.jpg");
         Hulk = new ImageView(hulk);
         Hulk.setFitHeight(60);
         Hulk.setFitWidth(25);
-        Hulk.relocate(1065,400);
+        Hulk.relocate(1065, 400);
         t1 = new Text();
         t1.setText("Score:");
-        t1.setFont(new Font("Italic",34));
+        t1.setFont(new Font("Italic", 34));
         t1.setFill(Color.CYAN);
         t1.setX(50);
         t1.setY(35);
@@ -663,6 +646,26 @@ public class window{
 
 
 
+        //Adding life\\
+
+     Image life1 = new Image("/pics/safegurd.png");
+        ImageView l1 = new ImageView(life1);
+        life.add(l1);
+        l1.setFitHeight(45);
+        l1.setFitWidth(40);
+        l1.setX(8);
+        l1.setY(85);
+
+
+        Image life2 = new Image("/pics/life1.png");
+        ImageView l2 = new ImageView(life2);
+        life.add(l2);
+        l2.setFitHeight(45);
+        l2.setFitWidth(40);
+        l2.setX(220);
+        l2.setY(440);
+
+
 
 
 
@@ -673,13 +676,13 @@ public class window{
         pane.setMaxHeight(800);
         pane.setMaxWidth(1300);
         pane.setStyle("-fx-background-color: Black");
-        pane.setBottomAnchor(h,0.0);
-        pane.getChildren().addAll(BackGround,Thor,Thanos,Ultron,Loki,
-                Soul,Reality,Time,Mind,Space,Power,
-                Obs1,Obs2,Obs3,Obs4,Obs5,
-                B1,B2,B3,S1,S2,S3,S4,S5,S6,S7,St1,
-                St2,St3,St4,St5,St6,B4,B5,B6,St7,St8,St9,Br1,Br2,Br3,Br4,Stk1,Stk2,
-                Stk3,Stk4,Stk5,Stk6,Stk7,Br5,Br6,t1,t2);
+        pane.setBottomAnchor(h, 0.0);
+        pane.getChildren().addAll(BackGround, Thor, Thanos, Ultron, Loki,
+                Soul, Reality, Time, Mind, Space, Power,l1,l2,
+                Obs1, Obs2, Obs3, Obs4, Obs5,
+                B1, B2, B3, S1, S2, S3, S4, S5, S6, S7, St1,
+                St2, St3, St4, St5, St6, B4, B5, B6, St7, St8, St9, Br1, Br2, Br3, Br4, Stk1, Stk2,
+                Stk3, Stk4, Stk5, Stk6, Stk7, Br5, Br6, t1, t2);
 
 
 
@@ -688,7 +691,7 @@ public class window{
         //SHOWING THE SCENE\\
         Scene scene = new Scene(pane);
         scene.getRoot().requestFocus();
-        Stage stage = new Stage();
+        stage = new Stage();
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -700,74 +703,88 @@ public class window{
 
 
         //MOVING OUR HERO THROUGH KEYBOARD\\
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch(event.getCode()){
-                    case UP: goUp=true;break;
-                    case DOWN: goDown=true;break;
-                    case LEFT: goLeft=true;break;
-                    case RIGHT: goRight=true;break;
+                switch (event.getCode()) {
+                    case UP:
+                        goUp = true;
+                        break;
+                    case DOWN:
+                        goDown = true;
+                        break;
+                    case LEFT:
+                        goLeft = true;
+                        break;
+                    case RIGHT:
+                        goRight = true;
+                        break;
                 }
             }
         });
 
 
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>(){
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch(event.getCode()){
-                    case UP: goUp=false;break;
-                    case DOWN: goDown=false;break;
-                    case LEFT: goLeft=false;break;
-                    case RIGHT: goRight=false;break;
+                switch (event.getCode()) {
+                    case UP:
+                        goUp = false;
+                        break;
+                    case DOWN:
+                        goDown = false;
+                        break;
+                    case LEFT:
+                        goLeft = false;
+                        break;
+                    case RIGHT:
+                        goRight = false;
+                        break;
                 }
             }
         });
 
 
-
-        AnimationTimer timer = new AnimationTimer(){
+        AnimationTimer timer = new AnimationTimer() {
             double delta = 4;
+
             @Override
             public void handle(long now) {
                 checkEnemy();
                 checkBlock();
-                currX=Thor.getLayoutX();
-                currY=Thor.getLayoutY();
+                currX = Thor.getLayoutX();
+                currY = Thor.getLayoutY();
 
-                if(goUp){
-                    currY-=delta;
+                if (goUp) {
+                    currY -= delta;
                     checkCollision();
+                    CheckLife();
                 }
-                if(goDown){
-                    currY+=delta;
+                if (goDown) {
+                    currY += delta;
                     checkCollision();
+                    CheckLife();
+                }
+                if (goLeft) {
+                    currX -= delta;
+                    checkCollision();
+                    CheckLife();
 
                 }
-                if(goLeft){
-                    currX-=delta;
+                if (goRight) {
+                    currX += delta;
                     checkCollision();
-
-
-                }
-                if(goRight){
-                    currX+=delta;
-                    checkCollision();
+                    CheckLife();
 
                 }
                 SetBoundaries();
-                if(!checkBlock(currX,currY))
-                    Thor.relocate(currX,currY);
+                if (!checkBlock(currX, currY))
+                    Thor.relocate(currX, currY);
 
             }
         };
         timer.start();
     }
-
-
-
-
 
 
     //Setting Boundary so the character don't go outside\\
@@ -778,22 +795,22 @@ public class window{
     public static double TopBoundary = 0;
 
 
-    public void SetBoundaries(){
-        if(currX>=RightBoundary)
+    public void SetBoundaries() {
+        if (currX >= RightBoundary)
         {
-            currX=RightBoundary;
+            currX = RightBoundary;
         }
-        else  if(currX<=LeftBoundary)
+        else if (currX <= LeftBoundary)
         {
-            currX=LeftBoundary;
+            currX = LeftBoundary;
         }
-        else   if(currY>=BottomBoundary)
+        else if (currY >= BottomBoundary)
         {
-            currY=BottomBoundary;
+            currY = BottomBoundary;
         }
-        else   if(currY<=TopBoundary)
+        else if (currY <= TopBoundary)
         {
-            currY=TopBoundary;
+            currY = TopBoundary;
         }
 
     }
@@ -804,12 +821,12 @@ public class window{
 
 
     //Collision with Enemy\\
-    public void checkEnemy(){
-        for(ImageView f:enemy) {
+    public void checkEnemy() {
+        for (ImageView f : enemy) {
             if (Thor.getBoundsInParent().intersects(f.getBoundsInParent())) {
 
                 ImageIcon icon = new ImageIcon("Game_over.jpg");
-                JOptionPane.showMessageDialog(null,"","",JOptionPane.INFORMATION_MESSAGE,icon);
+                JOptionPane.showMessageDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE, icon);
                 System.exit(0);
 
             }
@@ -820,10 +837,11 @@ public class window{
 
 
 
+
     //Maze as barrier\\
-    public boolean checkBlock(double x,double y) {
+    public boolean checkBlock(double x, double y) {
         for (ImageView b : block) {
-            if(b.intersects(x,y,25,60))
+            if (b.intersects(x, y, 25, 60))
                 return true;
 
         }
@@ -835,16 +853,16 @@ public class window{
 
 
     //For Background Music\\
-    public void start(Stage s) throws Exception{
+    public void start(Stage s) throws Exception {
         //leave empty
     }
 
 
-
     MediaPlayer mediaplayer;
-    public void music(){
-        String s="C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\music\\music.mp3";
-        Media h= new Media(Paths.get(s).toUri().toString());
+
+    public void music() {
+        String s = "C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\music\\music.mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();
     }
@@ -854,43 +872,50 @@ public class window{
 
 
 
-
-    //FOR Earning Scores.
-    private void checkCollision(){
-        for(ImageView e:stoneList){
-            if(e.getBoundsInParent().intersects(Thor.getBoundsInParent())){
-                s+=100;
-                t2.setText(""+s);
+    //FOR Earning Scores\\
+    private void checkCollision() {
+        for (ImageView e : stoneList) {
+            if (e.getBoundsInParent().intersects(Thor.getBoundsInParent())) {
+                s += 100;
+                t2.setText("" + s);
                 stoneList.remove(e);
                 pane.getChildren().remove(e);
                 break;
             }
-            if (s == 100) {
+            if (s == 200) {
                 LevelSwap();
-                }
             }
         }
+    }
 
 
 
 
 
 
-
-
-    //Collision with Block
-    public void checkBlock(){
-        for(ImageView b:obstacle) {
-            if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j<5) {
+    //Collision with Block\\
+    public void checkBlock() {
+        for (ImageView b : obstacle) {
+            if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j < 5 && m==0) {
                 j++;
                 Thor.setImage(assets.getHero());
-                Thor.relocate(1065,400);
+                Thor.relocate(1065, 400);
                 break;
-            }
-            else if(j==5){
+
+            } else if (j == 5 && m==0) {
                 ImageIcon icon = new ImageIcon("Game_over.jpg");
-                JOptionPane.showMessageDialog(null,"","",JOptionPane.INFORMATION_MESSAGE,icon);
+                JOptionPane.showMessageDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE, icon);
                 System.exit(0);
+            }
+           else if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j < 5 && m>0) {
+                m-=1;
+                Thor.relocate(1065, 400);
+
+            }
+            else if (j == 5 && m>0) {
+               m-=1;
+                Thor.relocate(1065, 400);
+
             }
         }
     }
@@ -900,18 +925,34 @@ public class window{
 
 
 
-
-
-
-//LEVEL SWAP\\
-public void LevelSwap() {
-    s = 0;
-    ImageIcon icon = new ImageIcon("win.jpg");
-    int k = JOptionPane.showConfirmDialog(null, "", "", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION, icon);
-    if (k == JOptionPane.YES_OPTION) {
-
-        level box = new level();
+    //LEVEL SWAP\\
+    public void LevelSwap() {
+        s = 0;
+        ImageIcon icon = new ImageIcon("win.jpg");
+        int k = JOptionPane.showConfirmDialog(null, "", "", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION, icon);
+        if (k == JOptionPane.YES_OPTION) {
+            stage.close();
+            level2 box = new level2();
+        } else System.exit(0);
     }
-    else System.exit(0);
-}
-}
+
+
+
+
+
+
+
+    //FOR GETTING NEW LIFE\\
+    private void CheckLife() {
+        for (ImageView k : life) {
+            if (k.getBoundsInParent().intersects(Thor.getBoundsInParent())) {
+                m++;
+                life.remove(k);
+                pane.getChildren().remove(k);
+                break;
+            }
+        }
+    }
+
+
+        }

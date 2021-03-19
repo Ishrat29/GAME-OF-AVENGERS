@@ -32,7 +32,7 @@ import javafx.util.Duration;
 import javax.swing.*;
 
 
-public class level{
+public class level2 {
 
     private ArrayList<ImageView> stoneList,block,obstacle;
     public ImageView Thor,Time,Hulk,Hero;
@@ -51,7 +51,7 @@ public class level{
     protected static final double pos_x=81;
     protected static final double pos_y=81;
 
-    level(){
+    level2(){
 
 
         assets=new Assets();
@@ -771,10 +771,10 @@ public class level{
     public static double BottomBoundary = 690;
     public static double TopBoundary = 0;
 
-    public level(Text t3, Text t4) {
+  /*  public level2(Text t3, Text t4) {
         this.t3 = t3;
         this.t4 = t4;
-    }
+    } */
 
 
     public void SetBoundaries(){
@@ -851,7 +851,6 @@ public class level{
     //FOR Earning Scores\\
     private void checkCollision(){
         for(ImageView e:stoneList){
-            s=600;
             if(e.getBoundsInParent().intersects(Thor.getBoundsInParent())){
                 s+=100;
                 t4.setText(""+s);
