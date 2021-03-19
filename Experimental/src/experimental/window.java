@@ -86,7 +86,7 @@ public class window {
         //MOVEMENT OF OBSTACLE 2\\
         Image o2 = new Image("/pics/Tressaract.jpg");
         ImageView Obs2 = new ImageView(o2);
-        obstacle.add(Obs1);
+        obstacle.add(Obs2);
         Obs2.setFitHeight(22);
         Obs2.setFitWidth(22);
         Obs2.setX(33);
@@ -96,7 +96,7 @@ public class window {
         pathB2.getElements().add(new MoveTo(529, 111));
         pathB2.getElements().add(new VLineTo(650));
 
-        PathTransition forB2 = new PathTransition(Duration.seconds(1), pathB2, Obs2);
+        PathTransition forB2 = new PathTransition(Duration.seconds(2), pathB2, Obs2);
         forB2.setCycleCount(PathTransition.INDEFINITE);
         forB2.setAutoReverse(true);
         forB2.play();
@@ -247,12 +247,16 @@ public class window {
         BackGround.setFitWidth(1300);
 
 
+
+
         //HERE COMES OUR HERO !!!!\\
         Image thor = new Image("/pics/Thor.png");
         Thor = new ImageView(thor);
         Thor.setFitHeight(60);
         Thor.setFitWidth(25);
         Thor.relocate(1100, 300);
+
+
 
 
         //SETTING UP THE MAZE\\
@@ -543,6 +547,8 @@ public class window {
         Br6.setY(470);
 
 
+
+
         //SETTING UP STONES\\
         Image soulStone = new Image("/pics/SoulStone.png");
         ImageView Soul = new ImageView(soulStone);
@@ -593,15 +599,6 @@ public class window {
         Time.setY(320);
 
 
-     /*   Image life = new Image("/pics/safegurd.png");
-        ImageView l1 = new ImageView(life);
-        stoneList.add(l1);
-        l1.setFitHeight(70);
-        l1.setFitWidth(40);
-        l1.setX(1000);
-        l1.setY(500); */
-
-
 
 
 
@@ -646,6 +643,8 @@ public class window {
 
 
 
+
+
         //Adding life\\
 
      Image life1 = new Image("/pics/safegurd.png");
@@ -665,6 +664,14 @@ public class window {
         l2.setX(220);
         l2.setY(440);
 
+        Image life3 = new Image("/pics/life3.png");
+        ImageView l3 = new ImageView(life3);
+        life.add(l3);
+        l3.setFitHeight(35);
+        l3.setFitWidth(30);
+        l3.setX(525);
+        l3.setY(195);
+
 
 
 
@@ -678,7 +685,7 @@ public class window {
         pane.setStyle("-fx-background-color: Black");
         pane.setBottomAnchor(h, 0.0);
         pane.getChildren().addAll(BackGround, Thor, Thanos, Ultron, Loki,
-                Soul, Reality, Time, Mind, Space, Power,l1,l2,
+                Soul, Reality, Time, Mind, Space, Power,l1,l2,l3,
                 Obs1, Obs2, Obs3, Obs4, Obs5,
                 B1, B2, B3, S1, S2, S3, S4, S5, S6, S7, St1,
                 St2, St3, St4, St5, St6, B4, B5, B6, St7, St8, St9, Br1, Br2, Br3, Br4, Stk1, Stk2,
