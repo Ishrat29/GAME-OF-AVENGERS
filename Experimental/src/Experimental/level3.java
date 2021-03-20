@@ -29,7 +29,7 @@ import javafx.util.Duration;
 import javax.swing.*;
 
 
-public class level2<ae>{
+public class level3<ae>{
 
     private ArrayList<ImageView> stoneList, block, obstacle, life;
     public ImageView Thor, Time, Hulk, Hero;
@@ -38,9 +38,9 @@ public class level2<ae>{
     public Rectangle2D r, r1;
     private AnchorPane pane;
     private Stage stage;
-    private final Text t3;
-    private final Text t4;
-    private int s = 600;
+    private final Text t5;
+    private final Text t6;
+    private int s = 1200;
     public ImageView Block13;
     public double currX, currY;
     private static int j = 0, m = 0;
@@ -49,7 +49,7 @@ public class level2<ae>{
     protected static final double pos_x = 81;
     protected static final double pos_y = 81;
 
-    level2() {
+    level3() {
 
 
         assets = new Assets();
@@ -235,7 +235,7 @@ public class level2<ae>{
 
 
         //BACKGROUND IMAGE
-        Image img = new Image("/pics/bk.jpg");
+        Image img = new Image("/pics/kk.jpg");
         ImageView BackGround = new ImageView(img);
         BackGround.setFitHeight(750);
         BackGround.setFitWidth(1300);
@@ -524,8 +524,6 @@ public class level2<ae>{
         St6.setY(353);
 
 
-
-
         //SETTING UP STONES\\
         Image soulStone = new Image("/pics/SoulStone.png");
         ImageView Soul = new ImageView(soulStone);
@@ -576,8 +574,6 @@ public class level2<ae>{
         Time.setY(96);
 
 
-
-
         //THOR collecting stones\\
         thor = new Image("/pics/Thor.png");
         Thor = new ImageView(thor);
@@ -589,19 +585,19 @@ public class level2<ae>{
         Hulk.setFitHeight(60);
         Hulk.setFitWidth(25);
         Hulk.relocate(1200, 400);
-        t3 = new Text();
-        t3.setText("Score:");
-        t3.setFont(new Font("Italic", 34));
-        t3.setFill(Color.CYAN);
-        t3.setX(50);
-        t3.setY(35);
+        t5 = new Text();
+        t5.setText("Score:");
+        t5.setFont(new Font("Italic", 34));
+        t5.setFill(Color.CYAN);
+        t5.setX(50);
+        t5.setY(35);
 
-        t4 = new Text();
-        t4.setText("600");
-        t4.setFill(Color.CYAN);
-        t4.setFont(new Font("Italic", 34));
-        t4.setX(150);
-        t4.setY(38);
+        t6 = new Text();
+        t6.setText("1200");
+        t6.setFill(Color.CYAN);
+        t6.setFont(new Font("Italic", 34));
+        t6.setX(150);
+        t6.setY(38);
 
 
 
@@ -645,10 +641,8 @@ public class level2<ae>{
         life.add(l3);
         l3.setFitHeight(35);
         l3.setFitWidth(30);
-        l3.setX(775);
-        l3.setY(94);
-
-
+        l3.setX(1116);
+        l3.setY(330);
 
 
         //ADDING ALL THE ELEMENTS TO OUR ANCHORPANE\\
@@ -666,7 +660,7 @@ public class level2<ae>{
                 Br1, Br2, Br3, Br4, Br5, Br6, Br7, Br8, Br9,
                 S1, S2, S3, S4, S5, S6, S7,
                 St1, St2, St3, St4, St5, St6,
-                t3, t4, l1, l2, l3
+                t5, t6, l1, l2, l3
         );
 
 
@@ -680,6 +674,9 @@ public class level2<ae>{
         stage.setResizable(false);
         stage.show();
         //music();
+
+
+
 
 
         //MOVING OUR HERO THROUGH KEYBOARD\\
@@ -776,9 +773,9 @@ public class level2<ae>{
     public static double BottomBoundary = 690;
     public static double TopBoundary = 0;
 
-  /*  public level2(Text t3, Text t4) {
-        this.t3 = t3;
-        this.t4 = t4;
+  /*  public level2(Text t5, Text t6) {
+        this.t5 = t5;
+        this.t6 = t6;
     }*/
 
 
@@ -828,6 +825,9 @@ public class level2<ae>{
     }
 
 
+
+
+
     //For Background Music\\
     public void start(Stage s) throws Exception {
         //leave empty
@@ -853,13 +853,15 @@ public class level2<ae>{
 
             if (e.getBoundsInParent().intersects(Thor.getBoundsInParent())) {
                 s += 100;
-                t4.setText("" + s);
+                t6.setText("" + s);
                 stoneList.remove(e);
                 pane.getChildren().remove(e);
                 break;
             }
-            if(s==1200){
-                LevelSwap();
+            if(s==1800){
+                ImageIcon icon = new ImageIcon("FinalWin.jpg");
+                JOptionPane.showMessageDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE, icon);
+                System.exit(0);
             }
 
         }
@@ -917,13 +919,13 @@ public class level2<ae>{
 
 //Level swap\\
 
-    public void LevelSwap() {
+ /*   public void LevelSwap() {
         s = 0;
         ImageIcon icon = new ImageIcon("win.jpg");
         int k = JOptionPane.showConfirmDialog(null, "", "", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION, icon);
         if (k == JOptionPane.YES_OPTION) {
             stage.close();
-            level3 box = new level3();
+            Help box = new Help();
         } else System.exit(0);
-    }
+    }*/
 }

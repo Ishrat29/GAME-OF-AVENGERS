@@ -10,9 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,7 +32,7 @@ import javafx.util.Duration;
 import javax.swing.*;
 
 
-public class window {
+public class window<ae> {
 
     private ArrayList<ImageView> stoneList, block, obstacle, life;
     public ImageView Thor, Time, Hulk, Hero;
@@ -241,7 +239,7 @@ public class window {
 
 
         //BACKGROUND IMAGE\\
-        Image img = new Image("/pics/Background.jpg");
+        Image img = new Image("/pics/m.jpg");
         ImageView BackGround = new ImageView(img);
         BackGround.setFitHeight(750);
         BackGround.setFitWidth(1300);
@@ -647,7 +645,7 @@ public class window {
 
         //Adding life\\
 
-     Image life1 = new Image("/pics/safegurd.png");
+        Image life1 = new Image("/pics/safegurd.png");
         ImageView l1 = new ImageView(life1);
         life.add(l1);
         l1.setFitHeight(45);
@@ -889,7 +887,7 @@ public class window {
                 pane.getChildren().remove(e);
                 break;
             }
-            if (s == 200) {
+            if (s == 600) {
                 LevelSwap();
             }
         }
@@ -914,13 +912,13 @@ public class window {
                 JOptionPane.showMessageDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE, icon);
                 System.exit(0);
             }
-           else if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j < 5 && m>0) {
+            else if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j < 5 && m>0) {
                 m-=1;
                 Thor.relocate(1065, 400);
 
             }
             else if (j == 5 && m>0) {
-               m-=1;
+                m-=1;
                 Thor.relocate(1065, 400);
 
             }
@@ -961,5 +959,7 @@ public class window {
         }
     }
 
+    //TIMER\\
 
-        }
+
+}
