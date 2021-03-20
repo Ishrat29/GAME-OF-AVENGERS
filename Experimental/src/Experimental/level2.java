@@ -20,10 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.VLineTo;
+import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -69,13 +66,13 @@ public class level2 {
         Obs1.setFitHeight(22);
         Obs1.setFitWidth(22);
         Obs1.setX(33);
-        Obs1.setY(23);
+        Obs1.setY(53);
 
         Path pathB1 = new Path();
         pathB1.getElements().add(new MoveTo(33,23));
-        pathB1.getElements().add(new VLineTo(709));
+        pathB1.getElements().add(new HLineTo(1209));
 
-        PathTransition forB1 = new PathTransition(Duration.seconds(1.5),pathB1,Obs1);
+        PathTransition forB1 = new PathTransition(Duration.seconds(1.2),pathB1,Obs1);
         forB1.setCycleCount(PathTransition.INDEFINITE);
         forB1.setAutoReverse(true);
         forB1.play();
@@ -88,13 +85,13 @@ public class level2 {
         Obs2.setFitHeight(22);
         Obs2.setFitWidth(22);
         Obs2.setX(33);
-        Obs2.setY(23);
+        Obs2.setY(123);
 
         Path pathB2 = new Path();
-        pathB2.getElements().add(new MoveTo(529,111));
-        pathB2.getElements().add(new VLineTo(650));
+        pathB2.getElements().add(new MoveTo(33,123));
+        pathB2.getElements().add(new HLineTo(1220));
 
-        PathTransition forB2 = new PathTransition(Duration.seconds(1),pathB2,Obs2);
+        PathTransition forB2 = new PathTransition(Duration.seconds(1.5),pathB2,Obs2);
         forB2.setCycleCount(PathTransition.INDEFINITE);
         forB2.setAutoReverse(true);
         forB2.play();
@@ -107,13 +104,13 @@ public class level2 {
         Obs3.setFitHeight(22);
         Obs3.setFitWidth(22);
         Obs3.setX(33);
-        Obs3.setY(23);
+        Obs3.setY(253);
 
         Path pathB3 = new Path();
-        pathB3.getElements().add(new MoveTo(770,143));
-        pathB3.getElements().add(new VLineTo(739));
+        pathB3.getElements().add(new MoveTo(33,253));
+        pathB3.getElements().add(new HLineTo(1235));
 
-        PathTransition forB3 = new PathTransition(Duration.seconds(2),pathB3,Obs3);
+        PathTransition forB3 = new PathTransition(Duration.seconds(1.8),pathB3,Obs3);
         forB3.setCycleCount(PathTransition.INDEFINITE);
         forB3.setAutoReverse(true);
         forB3.play();
@@ -126,13 +123,13 @@ public class level2 {
         Obs4.setFitHeight(22);
         Obs4.setFitWidth(22);
         Obs4.setX(33);
-        Obs4.setY(23);
+        Obs4.setY(523);
 
         Path pathB4 = new Path();
-        pathB4.getElements().add(new MoveTo(1217,58));
-        pathB4.getElements().add(new VLineTo(659));
+        pathB4.getElements().add(new MoveTo(33,523));
+        pathB4.getElements().add(new HLineTo(1209));
 
-        PathTransition forB4 = new PathTransition(Duration.seconds(2),pathB4,Obs4);
+        PathTransition forB4 = new PathTransition(Duration.seconds(1.4),pathB4,Obs4);
         forB4.setCycleCount(PathTransition.INDEFINITE);
         forB4.setAutoReverse(true);
         forB4.play();
@@ -145,13 +142,13 @@ public class level2 {
         Obs5.setFitHeight(22);
         Obs5.setFitWidth(22);
         Obs5.setX(33);
-        Obs5.setY(23);
+        Obs5.setY(623);
 
         Path pathB5 = new Path();
-        pathB5.getElements().add(new MoveTo(230,25));
-        pathB5.getElements().add(new VLineTo(600));
+        pathB5.getElements().add(new MoveTo(33,623));
+        pathB5.getElements().add(new HLineTo(1200));
 
-        PathTransition forB5= new PathTransition(Duration.seconds(2),pathB5,Obs5);
+        PathTransition forB5= new PathTransition(Duration.seconds(1.7),pathB5,Obs5);
         forB5.setCycleCount(PathTransition.INDEFINITE);
         forB5.setAutoReverse(true);
         forB5.play();
@@ -166,17 +163,17 @@ public class level2 {
         enemy.add(Thanos);
         Thanos.setFitHeight(70);
         Thanos.setFitWidth(30);
-        Thanos.relocate(58,542);
+        Thanos.relocate(65,700);
 
-        LineTo lineTo = new LineTo(50,-300);
-        LineTo lineTo1 = new LineTo(350,-300);
-        LineTo lineTo2 = new LineTo(350,-500);
-        LineTo lineTo3 = new LineTo(675,-500);
-        LineTo lineTo4 = new LineTo(675,100);
+        LineTo lineTo = new LineTo(10,-600);
+        LineTo lineTo1 = new LineTo(200,-600);
+        LineTo lineTo2 = new LineTo(270,-150);
+        LineTo lineTo3 = new LineTo(450,-150);
+        LineTo lineTo4 = new LineTo(450,0);
 
-        MoveTo moveTo = new MoveTo(50,100);
+        MoveTo moveTo = new MoveTo(10,10);
 
-        Path path_Thanos = new Path(moveTo,lineTo,lineTo1,lineTo2,lineTo3,lineTo4);
+        Path path_Thanos = new Path(moveTo,lineTo,lineTo1 ,lineTo2 ,lineTo3 ,lineTo4);
 
         PathTransition forThanos = new PathTransition(Duration.seconds(10),path_Thanos,Thanos);
         forThanos.setCycleCount(PathTransition.INDEFINITE);
@@ -192,14 +189,14 @@ public class level2 {
         Ultron.setFitWidth(30);
         Ultron.relocate(58,542);
 
-        LineTo lineTo5 = new LineTo(900,-200);
-        LineTo lineTo6 = new LineTo(1150,-200);
-        LineTo lineTo7 = new LineTo(1150,-480);
-        LineTo lineTo8 = new LineTo(900,-480);
+        LineTo lineTo5 = new LineTo(500,-450);
+        LineTo lineTo6 = new LineTo(630,-450);
+        LineTo lineTo7 = new LineTo(730,150);
+        LineTo lineTo8 = new LineTo(950,150);
 
-        MoveTo moveTo2 = new MoveTo(900,50);
+        MoveTo moveTo2 = new MoveTo(500,-50);
 
-        Path path_Ultron = new Path(moveTo2,lineTo5,lineTo6,lineTo7,lineTo8);
+        Path path_Ultron = new Path(moveTo2,lineTo5 ,lineTo6 ,lineTo7 ,lineTo8);
 
         PathTransition forUltron = new PathTransition(Duration.seconds(8),path_Ultron,Ultron);
         forUltron.setCycleCount(PathTransition.INDEFINITE);
@@ -211,23 +208,21 @@ public class level2 {
         Image loki = new Image("/pics/Loki.jpg");
         Loki = new ImageView(loki);
         enemy.add(Loki);
-        Loki.setFitHeight(80);
+        Loki.setFitHeight(70);
         Loki.setFitWidth(30);
         Loki.relocate(58,542);
 
         //LineTo lineTo9 = new LineTo(850,100);
-        LineTo lineTo10 = new LineTo(850,-50);
-        LineTo lineTo11 = new LineTo(600,-50);
-        LineTo lineTo12 = new LineTo(600,150);
-        LineTo lineTo13 = new LineTo(450,150);
-        LineTo lineTo14 = new LineTo(450,-20);
-        LineTo lineTo15 = new LineTo(350,-20);
+        LineTo lineTo10 = new LineTo(920,-300);
+        LineTo lineTo11 = new LineTo(1200,-300);
+        LineTo lineTo12 = new LineTo(1200,-500);
+        LineTo lineTo13 = new LineTo(1100,-500);
 
-        MoveTo moveTo3 = new MoveTo(850,100);
+        MoveTo moveTo3 = new MoveTo(920,-20);
 
-        Path path_Loki = new Path(moveTo3,lineTo10,lineTo11,lineTo12,lineTo13,lineTo14,lineTo15);
+        Path path_Loki = new Path(moveTo3,lineTo10,lineTo11,lineTo12,lineTo13);
 
-        PathTransition forLoki = new PathTransition(Duration.seconds(7),path_Loki,Loki);
+        PathTransition forLoki = new PathTransition(Duration.seconds(6),path_Loki,Loki);
         forLoki.setCycleCount(PathTransition.INDEFINITE);
         forLoki.setAutoReverse(true);
         forLoki.play();
@@ -256,12 +251,16 @@ public class level2 {
 
 
 
+
+
         //HERE COMES OUR HERO !!!!
         Image thor = new Image("/pics/Thor.png");
         Thor = new ImageView(thor);
         Thor.setFitHeight(60);
         Thor.setFitWidth(25);
-        Thor.relocate(1100,300);
+        Thor.relocate(1200,400);
+
+
 
 
 
@@ -278,25 +277,160 @@ public class level2 {
         block.add(B1);
         B1.setFitHeight(150);
         B1.setFitWidth(65);
-        B1.setX(256);
-        B1.setY(600);
+        B1.setX(163);
+        B1.setY(604);
 
         Image b2 = new Image("/pics/red bricks.png");
         ImageView B2 = new ImageView(b2);
         block.add(B2);
         B2.setFitHeight(150);
         B2.setFitWidth(65);
-        B2.setX(256);
-        B2.setY(450);
+        B2.setX(163);
+        B2.setY(458);
 
         Image b3 = new Image("/pics/red bricks.png");
         ImageView B3 = new ImageView(b3);
         block.add(B3);
         B3.setFitHeight(150);
         B3.setFitWidth(65);
-        B3.setX(256);
-        B3.setY(300);
+        B3.setX(163);
+        B3.setY(314);
 
+        Image b4 = new Image("/pics/red bricks.png");
+        ImageView B4 = new ImageView(b4);
+        block.add(B4);
+        B4.setFitHeight(150);
+        B4.setFitWidth(65);
+        B4.setX(163);
+        B4.setY(171);
+
+        Image b5 = new Image("/pics/red bricks.png");
+        ImageView B5 = new ImageView(b5);
+        block.add(B5);
+        B5.setFitHeight(150);
+        B5.setFitWidth(65);
+        B5.setX(367);
+        B5.setY(0);
+
+        Image b6 = new Image("/pics/red bricks.png");
+        ImageView B6 = new ImageView(b6);
+        block.add(B6);
+        B6.setFitHeight(150);
+        B6.setFitWidth(65);
+        B6.setX(367);
+        B6.setY(146);
+
+        Image b7 = new Image("/pics/red bricks.png");
+        ImageView B7 = new ImageView(b7);
+        block.add(B7);
+        B7.setFitHeight(150);
+        B7.setFitWidth(65);
+        B7.setX(367);
+        B7.setY(289);
+
+        Image b8 = new Image("/pics/red bricks.png");
+        ImageView B8 = new ImageView(b8);
+        block.add(B8);
+        B8.setFitHeight(150);
+        B8.setFitWidth(65);
+        B8.setX(349);
+        B8.setY(604);
+
+        Image b9 = new Image("/pics/red bricks.png");
+        ImageView B9 = new ImageView(b9);
+        block.add(B9);
+        B9.setFitHeight(150);
+        B9.setFitWidth(65);
+        B9.setX(599);
+        B9.setY(604);
+
+        Image br1 = new Image("/pics/red bricks.png");
+        ImageView Br1 = new ImageView(br1);
+        block.add(Br1);
+        Br1.setFitHeight(150);
+        Br1.setFitWidth(65);
+        Br1.setX(599);
+        Br1.setY(458);
+
+        Image br2 = new Image("/pics/red bricks.png");
+        ImageView Br2 = new ImageView(br2);
+        block.add(Br2);
+        Br2.setFitHeight(150);
+        Br2.setFitWidth(65);
+        Br2.setX(599);
+        Br2.setY(314);
+
+        Image br3 = new Image("/pics/red bricks.png");
+        ImageView Br3 = new ImageView(br3);
+        block.add(Br3);
+        Br3.setFitHeight(150);
+        Br3.setFitWidth(65);
+        Br3.setX(599);
+        Br3.setY(171);
+
+        Image br4 = new Image("/pics/red bricks.png");
+        ImageView Br4 = new ImageView(br4);
+        block.add(Br4);
+        Br4.setFitHeight(150);
+        Br4.setFitWidth(65);
+        Br4.setX(813);
+        Br4.setY(0);
+
+        Image br5 = new Image("/pics/red bricks.png");
+        ImageView Br5 = new ImageView(br5);
+        block.add(Br5);
+        Br5.setFitHeight(150);
+        Br5.setFitWidth(65);
+        Br5.setX(813);
+        Br5.setY(146);
+
+        Image br6 = new Image("/pics/red bricks.png");
+        ImageView Br6 = new ImageView(br6);
+        block.add(Br6);
+        Br6.setFitHeight(150);
+        Br6.setFitWidth(65);
+        Br6.setX(813);
+        Br6.setY(292);
+
+        Image br7 = new Image("/pics/red bricks.png");
+        ImageView Br7 = new ImageView(br7);
+        block.add(Br7);
+        Br7.setFitHeight(150);
+        Br7.setFitWidth(65);
+        Br7.setX(813);
+        Br7.setY(435);
+
+        Image br8 = new Image("/pics/red bricks.png");
+        ImageView Br8 = new ImageView(br8);
+        block.add(Br8);
+        Br8.setFitHeight(150);
+        Br8.setFitWidth(65);
+        Br8.setX(1042);
+        Br8.setY(604);
+
+        Image br9 = new Image("/pics/red bricks.png");
+        ImageView Br9 = new ImageView(br9);
+        block.add(Br9);
+        Br9.setFitHeight(150);
+        Br9.setFitWidth(65);
+        Br9.setX(1042);
+        Br9.setY(458);
+
+        Image brk1 = new Image("/pics/red bricks.png");
+        ImageView Brk1 = new ImageView(brk1);
+        block.add(Brk1);
+        Brk1.setFitHeight(150);
+        Brk1.setFitWidth(65);
+        Brk1.setX(1042);
+        Brk1.setY(314);
+
+        Image brk2 = new Image("/pics/red bricks.png");
+        ImageView Brk2 = new ImageView(brk2);
+        block.add(Brk2);
+        Brk2.setFitHeight(150);
+        Brk2.setFitWidth(65);
+        Brk2.setX(1033);
+        Brk2.setY(0);
 
 
 
@@ -305,56 +439,56 @@ public class level2 {
         block.add(S1);
         S1.setFitHeight(50);
         S1.setFitWidth(65);
-        S1.setX(0);
-        S1.setY(570);
+        S1.setX(100);
+        S1.setY(337);
 
         Image s2 = new Image("/pics/red stack.png");
         ImageView S2 = new ImageView(s2);
         block.add(S2);
         S2.setFitHeight(50);
         S2.setFitWidth(65);
-        S2.setX(0);
-        S2.setY(142);
+        S2.setX(228);
+        S2.setY(428);
 
         Image s3 = new Image("/pics/red stack.png");
         ImageView S3 = new ImageView(s3);
         block.add(S3);
         S3.setFitHeight(50);
         S3.setFitWidth(65);
-        S3.setX(65);
-        S3.setY(142);
+        S3.setX(304);
+        S3.setY(96);
 
         Image s4 = new Image("/pics/red stack.png");
         ImageView S4 = new ImageView(s4);
         block.add(S4);
         S4.setFitHeight(50);
         S4.setFitWidth(65);
-        S4.setX(248);
-        S4.setY(0);
+        S4.setX(432);
+        S4.setY(244);
 
         Image s5 = new Image("/pics/red stack.png");
         ImageView S5 = new ImageView(s5);
         block.add(S5);
         S5.setFitHeight(50);
         S5.setFitWidth(65);
-        S5.setX(248);
-        S5.setY(50);
+        S5.setX(535);
+        S5.setY(537);
 
         Image s6 = new Image("/pics/red stack.png");
         ImageView S6 = new ImageView(s6);
         block.add(S6);
         S6.setFitHeight(50);
         S6.setFitWidth(65);
-        S6.setX(194);
-        S6.setY(390);
+        S6.setX(664);
+        S6.setY(428);
 
         Image s7 = new Image("/pics/red stack.png");
         ImageView S7 = new ImageView(s7);
         block.add(S7);
         S7.setFitHeight(50);
         S7.setFitWidth(65);
-        S7.setX(132);
-        S7.setY(390);
+        S7.setX(750);
+        S7.setY(166);
 
 
         Image st1 = new Image("/pics/red stack.png");
@@ -362,203 +496,52 @@ public class level2 {
         block.add(St1);
         St1.setFitHeight(50);
         St1.setFitWidth(65);
-        St1.setX(321);
-        St1.setY(629);
+        St1.setX(878);
+        St1.setY(301);
 
         Image st2 = new Image("/pics/red stack.png");
         ImageView St2 = new ImageView(st2);
         block.add(St2);
         St2.setFitHeight(50);
         St2.setFitWidth(65);
-        St2.setX(374);
-        St2.setY(629);
+        St2.setX(979);
+        St2.setY(562);
 
         Image st3 = new Image("/pics/red stack.png");
         ImageView St3 = new ImageView(st3);
         block.add(St3);
         St3.setFitHeight(50);
         St3.setFitWidth(65);
-        St3.setX(321);
-        St3.setY(375);
+        St3.setX(1108);
+        St3.setY(677);
 
         Image st4 = new Image("/pics/red stack.png");
         ImageView St4 = new ImageView(st4);
         block.add(St4);
         St4.setFitHeight(50);
         St4.setFitWidth(65);
-        St4.setX(385);
-        St4.setY(375);
+        St4.setX(1098);
+        St4.setY(146);
 
         Image st5 = new Image("/pics/red stack.png");
         ImageView St5 = new ImageView(st5);
         block.add(St5);
         St5.setFitHeight(50);
         St5.setFitWidth(65);
-        St5.setX(443);
-        St5.setY(375);
+        St5.setX(1156);
+        St5.setY(146);
 
         Image st6 = new Image("/pics/red stack.png");
         ImageView St6 = new ImageView(st6);
         block.add(St6);
         St6.setFitHeight(50);
         St6.setFitWidth(65);
-        St6.setX(505);
-        St6.setY(375);
-
-        Image b4 = new Image("/pics/red bricks.png");
-        ImageView B4 = new ImageView(b4);
-        block.add(B4);
-        B4.setFitHeight(150);
-        B4.setFitWidth(65);
-        B4.setX(567);
-        B4.setY(278);
-
-        Image b5 = new Image("/pics/red bricks.png");
-        ImageView B5 = new ImageView(b5);
-        block.add(B5);
-        B5.setFitHeight(150);
-        B5.setFitWidth(65);
-        B5.setX(567);
-        B5.setY(428);
-
-        Image b6 = new Image("/pics/red bricks.png");
-        ImageView B6 = new ImageView(b6);
-        block.add(B6);
-        B6.setFitHeight(150);
-        B6.setFitWidth(65);
-        B6.setX(567);
-        B6.setY(140);
-
-        Image st7 = new Image("/pics/red stack.png");
-        ImageView St7 = new ImageView(st7);
-        block.add(St7);
-        St7.setFitHeight(50);
-        St7.setFitWidth(65);
-        St7.setX(632);
-        St7.setY(279);
-
-        Image st8 = new Image("/pics/red stack.png");
-        ImageView St8 = new ImageView(st8);
-        block.add(St8);
-        St8.setFitHeight(50);
-        St8.setFitWidth(65);
-        St8.setX(503);
-        St8.setY(140);
-
-        Image st9 = new Image("/pics/red stack.png");
-        ImageView St9 = new ImageView(st9);
-        block.add(St9);
-        St9.setFitHeight(50);
-        St9.setFitWidth(65);
-        St9.setX(443);
-        St9.setY(140);
+        St6.setX(1241);
+        St6.setY(353);
 
 
 
 
-        Image br1 = new Image("/pics/red bricks.png");
-        ImageView Br1 = new ImageView(br1);
-        block.add(Br1);
-        Br1.setFitHeight(150);
-        Br1.setFitWidth(65);
-        Br1.setX(765);
-        Br1.setY(600);
-
-        Image br2 = new Image("/pics/red bricks.png");
-        ImageView Br2 = new ImageView(br2);
-        block.add(Br2);
-        Br2.setFitHeight(150);
-        Br2.setFitWidth(65);
-        Br2.setX(829);
-        Br2.setY(300);
-
-        Image br3 = new Image("/pics/red bricks.png");
-        ImageView Br3 = new ImageView(br3);
-        block.add(Br3);
-        Br3.setFitHeight(150);
-        Br3.setFitWidth(65);
-        Br3.setX(829);
-        Br3.setY(150);
-
-        Image br4 = new Image("/pics/red bricks.png");
-        ImageView Br4 = new ImageView(br4);
-        block.add(Br4);
-        Br4.setFitHeight(150);
-        Br4.setFitWidth(65);
-        Br4.setX(829);
-        Br4.setY(0);
-
-        Image stk1 = new Image("/pics/red stack.png");
-        ImageView Stk1 = new ImageView(stk1);
-        block.add(Stk1);
-        Stk1.setFitHeight(50);
-        Stk1.setFitWidth(65);
-        Stk1.setX(765);
-        Stk1.setY(120);
-
-        Image stk2 = new Image("/pics/red stack.png");
-        ImageView Stk2 = new ImageView(stk2);
-        block.add(Stk2);
-        Stk2.setFitHeight(50);
-        Stk2.setFitWidth(65);
-        Stk2.setX(894);
-        Stk2.setY(177);
-
-        Image stk3 = new Image("/pics/red stack.png");
-        ImageView Stk3 = new ImageView(stk3);
-        block.add(Stk3);
-        Stk3.setFitHeight(50);
-        Stk3.setFitWidth(65);
-        Stk3.setX(958);
-        Stk3.setY(177);
-
-        Image stk4 = new Image("/pics/red stack.png");
-        ImageView Stk4 = new ImageView(stk4);
-        block.add(Stk4);
-        Stk4.setFitHeight(50);
-        Stk4.setFitWidth(65);
-        Stk4.setX(1020);
-        Stk4.setY(177);
-
-        Image stk5 = new Image("/pics/red stack.png");
-        ImageView Stk5 = new ImageView(stk5);
-        block.add(Stk5);
-        Stk5.setFitHeight(50);
-        Stk5.setFitWidth(65);
-        Stk5.setX(1235);
-        Stk5.setY(424);
-
-        Image stk6 = new Image("/pics/red stack.png");
-        ImageView Stk6 = new ImageView(stk6);
-        block.add(Stk6);
-        Stk6.setFitHeight(50);
-        Stk6.setFitWidth(65);
-        Stk6.setX(1176);
-        Stk6.setY(424);
-
-        Image stk7 = new Image("/pics/red stack.png");
-        ImageView Stk7 = new ImageView(stk7);
-        block.add(Stk7);
-        Stk7.setFitHeight(50);
-        Stk7.setFitWidth(65);
-        Stk7.setX(1115);
-        Stk7.setY(424);
-
-        Image br5 = new Image("/pics/red bricks.png");
-        ImageView Br5 = new ImageView(br5);
-        block.add(Br5);
-        Br5.setFitHeight(150);
-        Br5.setFitWidth(65);
-        Br5.setX(1080);
-        Br5.setY(142);
-
-        Image br6 = new Image("/pics/red bricks.png");
-        ImageView Br6 = new ImageView(br6);
-        block.add(Br6);
-        Br6.setFitHeight(150);
-        Br6.setFitWidth(65);
-        Br6.setX(1050);
-        Br6.setY(470);
 
 
 
@@ -571,48 +554,50 @@ public class level2 {
         stoneList.add(Soul);
         Soul.setFitHeight(30);
         Soul.setFitWidth(30);
-        Soul.setX(800);
-        Soul.setY(180);
+        Soul.setX(119);
+        Soul.setY(292);
 
         Image powerStone = new Image("/pics/PowerStone.png");
         ImageView Power = new ImageView(powerStone);
         stoneList.add(Power);
         Power.setFitHeight(30);
         Power.setFitWidth(30);
-        Power.setX(14);
-        Power.setY(675);
+        Power.setX(367);
+        Power.setY(562);
 
         Image realityStone = new Image("/pics/RealityStone.png");
         ImageView Reality = new ImageView(realityStone);
         stoneList.add(Reality);
         Reality.setFitHeight(30);
         Reality.setFitWidth(30);
-        Reality.setX(342);
-        Reality.setY(577);
+        Reality.setX(446);
+        Reality.setY(201);
 
         Image spaceStone = new Image("/pics/SpaceStone.png");
         ImageView Space = new ImageView(spaceStone);
         stoneList.add(Space);
         Space.setFitHeight(30);
         Space.setFitWidth(30);
-        Space.setX(915);
-        Space.setY(112);
+        Space.setX(678);
+        Space.setY(387);
 
         Image mindStone = new Image("/pics/MindStone.png");
         ImageView Mind = new ImageView(mindStone);
         stoneList.add(Mind);
         Mind.setFitHeight(30);
         Mind.setFitWidth(30);
-        Mind.setX(1130);
-        Mind.setY(490);
+        Mind.setX(998);
+        Mind.setY(619);
 
         Image timeStone = new Image("/pics/Timestone.png");
         ImageView Time = new ImageView(timeStone);
         stoneList.add(Time);
         Time.setFitHeight(30);
         Time.setFitWidth(30);
-        Time.setX(491);
-        Time.setY(320);
+        Time.setX(1112);
+        Time.setY(96);
+
+
 
 
 
@@ -622,12 +607,12 @@ public class level2 {
         Thor = new ImageView(thor);
         Thor.setFitHeight(60);
         Thor.setFitWidth(25);
-        Thor.relocate(1065,400);
+        Thor.relocate(1200,400);
         Image hulk = new Image("/pics/Hulk.jpg");
         Hulk = new ImageView(hulk);
         Hulk.setFitHeight(60);
         Hulk.setFitWidth(25);
-        Hulk.relocate(1065,400);
+        Hulk.relocate(1200,400);
         t3 = new Text();
         t3.setText("Score:");
         t3.setFont(new Font("Italic",34));
@@ -641,6 +626,7 @@ public class level2 {
         t4.setFont(new Font("Italic", 34));
         t4.setX(150);
         t4.setY(38);
+
 
 
 
@@ -671,10 +657,13 @@ public class level2 {
         pane.setBottomAnchor(h,0.0);
         pane.getChildren().addAll(BackGround,Thor,Thanos,Ultron,Loki,
                 Soul,Reality,Time,Mind,Space,Power,
-                Obs1,Obs2,Obs3,Obs4,Obs5,
-                B1,B2,B3,S1,S2,S3,S4,S5,S6,S7,St1,
-                St2,St3,St4,St5,St6,B4,B5,B6,St7,St8,St9,Br1,Br2,Br3,Br4,Stk1,Stk2,
-                Stk3,Stk4,Stk5,Stk6,Stk7,Br5,Br6,t3,t4);
+                Obs1,Obs3,Obs4,Obs5,
+                B1,B2,B3,B4,B5,B6,B7,B8,B9,Brk1,Brk2,
+                Br1,Br2,Br3,Br4,Br5,Br6,Br7,Br8,Br9,
+                S1,S2,S3,S4,S5,S6,S7,
+                St1,St2,St3,St4,St5,St6,
+                t3,t4
+                );
 
 
 
@@ -687,7 +676,8 @@ public class level2 {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        music();
+        //music();
+
 
 
 
@@ -764,6 +754,7 @@ public class level2 {
 
 
 
+
     //Setting Boundary so the character don't go outside\\
 
     public static double RightBoundary = 1280;
@@ -771,10 +762,10 @@ public class level2 {
     public static double BottomBoundary = 690;
     public static double TopBoundary = 0;
 
-  /*  public level2(Text t3, Text t4) {
+    public level2(Text t3, Text t4) {
         this.t3 = t3;
         this.t4 = t4;
-    } */
+    }
 
 
     public void SetBoundaries(){
@@ -837,7 +828,7 @@ public class level2 {
 
     MediaPlayer mediaplayer;
     public void music(){
-        String s="C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\music\\music.mp3";
+        String s="E:\\Java_Project\\src\\music\\music.mp3";
         Media h= new Media(Paths.get(s).toUri().toString());
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();
@@ -851,6 +842,7 @@ public class level2 {
     //FOR Earning Scores\\
     private void checkCollision(){
         for(ImageView e:stoneList){
+            s=600;
             if(e.getBoundsInParent().intersects(Thor.getBoundsInParent())){
                 s+=100;
                 t4.setText(""+s);
@@ -871,10 +863,10 @@ public class level2 {
             if (Thor.getBoundsInParent().intersects(b.getBoundsInParent()) && j<5) {
                 j++;
                 Thor.setImage(assets.getHero());
-                Thor.relocate(1065,400);
+                Thor.relocate(1200,400);
                 break;
             }
-            else if(j==5){
+            else if(j==10){
                 ImageIcon icon = new ImageIcon("Game_over.jpg");
                 JOptionPane.showMessageDialog(null,"","",JOptionPane.INFORMATION_MESSAGE,icon);
                 System.exit(0);
@@ -882,10 +874,12 @@ public class level2 {
         }
     }
 
+
 }
 
 
 
 
 //Level swap\\
+
 
