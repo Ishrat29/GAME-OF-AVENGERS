@@ -837,7 +837,7 @@ public class level2<ae>{
     MediaPlayer mediaplayer;
 
     public void music() {
-        String s = "C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\music\\music.mp3";
+        String s = "E:\\Github\\Java_Game_project\\java_project\\Experimental\\src\\music\\music.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();
