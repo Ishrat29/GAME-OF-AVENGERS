@@ -837,7 +837,7 @@ public class level2<ae>{
     MediaPlayer mediaplayer;
 
     public void music() {
-        String s = "E:\\Github\\Java_Game_project\\java_project\\Experimental\\src\\music\\music.mp3";
+        String s = "C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\music\\music.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();
@@ -858,7 +858,7 @@ public class level2<ae>{
                 pane.getChildren().remove(e);
                 break;
             }
-            if(s==1200){
+            if(s==700){
                 LevelSwap();
             }
 
@@ -922,6 +922,9 @@ public class level2<ae>{
         ImageIcon icon = new ImageIcon("win.jpg");
         int k = JOptionPane.showConfirmDialog(null, "", "", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION, icon);
         if (k == JOptionPane.YES_OPTION) {
+            ImageIcon c = new ImageIcon("level3.png");
+            JOptionPane.showMessageDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE, c);
+
             stage.close();
             level3 box = new level3();
         } else System.exit(0);

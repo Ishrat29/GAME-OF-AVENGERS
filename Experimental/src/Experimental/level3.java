@@ -534,7 +534,7 @@ public class level3<ae>{
         Power.setFitHeight(30);
         Power.setFitWidth(30);
         Power.setX(117);
-        Power.setY(233);
+        Power.setY(633);
 
         Image realityStone = new Image("/pics/RealityStone.png");
         ImageView Reality = new ImageView(realityStone);
@@ -833,7 +833,7 @@ public class level3<ae>{
     MediaPlayer mediaplayer;
 
     public void music() {
-        String s = "E:\\Java_Project\\src\\music\\music.mp3";
+        String s = "C:\\Users\\Admin\\IdeaProjects\\Experimental\\src\\music\\music.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         mediaplayer = new MediaPlayer(h);
         mediaplayer.play();

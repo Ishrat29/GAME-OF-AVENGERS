@@ -21,7 +21,7 @@ public class Assets {
 
     public Assets(){
         hero=new ArrayList<Image>();
-        File file = new File("E:\\Github\\Java_Game_project\\java_project\\Experimental\\src\\pics\\Hulk.jpg");
+        File file = new File("C:\\Users\\Admin\\Documents\\GitHub\\java_project\\Experimental\\src\\pics\\Hulk.jpg");
         Image hulk = new Image(file.toURI().toString());
         hero.add(hulk);
 
