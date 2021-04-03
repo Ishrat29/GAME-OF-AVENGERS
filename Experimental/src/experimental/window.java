@@ -11,7 +11,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -27,6 +30,7 @@ import javafx.scene.shape.VLineTo;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import javax.swing.*;
@@ -887,9 +891,10 @@ public class window<ae> {
                 pane.getChildren().remove(e);
                 break;
             }
-            if (s == 100) {
-                LevelSwap();
-            }
+        }
+        if (s==600) {
+            LevelSwap();
+
         }
     }
 
@@ -931,16 +936,88 @@ public class window<ae> {
 
 
     //LEVEL SWAP\\
+
     public void LevelSwap() {
-        s = 0;
-        ImageIcon icon = new ImageIcon("win.jpg");
-        int k = JOptionPane.showConfirmDialog(null, "", "", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION, icon);
-        if (k == JOptionPane.YES_OPTION) {
-            ImageIcon c = new ImageIcon("level2.png");
-            JOptionPane.showMessageDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE, c);
-            stage.close();
-            level2 box = new level2();
-        } else System.exit(0);
+        s=0;
+        ImageView img=new ImageView(new Image("/pics/win.jpg"));
+        img.setFitWidth(350.0);
+        img.setFitHeight(200.0);
+        Button b1=new Button("",new ImageView(new Image("/pics/yes.png")));
+        b1.setLayoutX(60);
+        b1.setLayoutY(220);
+        b1.setBorder(null);
+        b1.setStyle("-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 10;");
+
+        Button b2=new Button("",new ImageView(new Image("/pics/no.png")));
+        b2.setLayoutX(200);
+        b2.setLayoutY(220);
+        b2.setBorder(null);
+        b2.setStyle("-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 10;");
+
+
+
+        AnchorPane p=new AnchorPane();
+        p.setMaxHeight(350.0);
+        p.setMaxWidth(200.0);
+        p.getChildren().addAll(img,b1,b2);
+        p.setStyle("-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 10;");
+        Scene s=new Scene(p);
+        Stage st=new Stage();
+        st.setScene(s);
+        st.initStyle(StageStyle.TRANSPARENT);
+        s.setFill(Color.TRANSPARENT);
+        st.show();
+        pane.setOpacity(0.8);
+
+
+
+        b1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                st.close();
+                ImageView img1=new ImageView(new Image("/pics/level2.png"));
+                img1.setFitWidth(500);
+                img1.setFitHeight(200);
+                Button b3=new Button();
+                b3.setGraphic(new ImageView(new Image("/pics/ok.png")));
+                b3.setLayoutX(210);
+                b3.setLayoutY(200);
+                b3.setBorder(null);
+                b3.setStyle("-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 10;-fx-cursor:pointer;");
+                AnchorPane ac=new AnchorPane();
+                ac.setMaxWidth(500);
+                ac.setMaxHeight(200);
+                ac.getChildren().addAll(img1,b3);
+                ac.setStyle("-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 10;");
+                Scene sc=new Scene(ac);
+                Stage stag=new Stage();
+                stag.setScene(sc);
+                stag.initStyle(StageStyle.TRANSPARENT);
+                sc.setFill(Color.TRANSPARENT);
+                stag.show();
+
+                b3.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        stag.close();
+                        level2 box = new level2();
+                        stage.close();
+                    }
+                });
+
+
+            }
+        });
+        b2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.exit(0);
+            }
+        });
+
+
+
+
     }
 
 
