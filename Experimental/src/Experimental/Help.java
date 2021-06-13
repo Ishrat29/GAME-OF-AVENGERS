@@ -12,19 +12,19 @@ public class Help {
 
     Help(){
 
-        Image img = new Image("/pics/guideline.jpg");
+        Image img = new Image("E:/Github/Java_Game_project/java_project/Experimental/src/pics/ins.jpg");
         ImageView instruction = new ImageView(img);
-        instruction.setFitHeight(442);
-        instruction.setFitWidth(624);
+        instruction.setFitHeight(689);
+        instruction.setFitWidth(1243);
         instruction.setPreserveRatio(true);
 
 
         pane = new AnchorPane();
         pane.setStyle("-fx-background-color: Black");
-        pane.setMinHeight(440);
-        pane.setMinWidth(622);
-        pane.setMaxHeight(440);
-        pane.setMaxWidth(622);
+        pane.setMinHeight(689);
+        pane.setMinWidth(1243);
+        pane.setMaxHeight(689);
+        pane.setMaxWidth(1243);
         pane.getChildren().add(instruction);
 
 
