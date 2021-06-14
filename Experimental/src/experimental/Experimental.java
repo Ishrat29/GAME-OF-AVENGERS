@@ -115,7 +115,7 @@ public class Experimental extends Application {
 
         h.getChildren().addAll(btn_exit,btn_help);
 
-        Image ig = new Image("/pics/first_background.jpg");
+        Image ig = new Image("/pics/welcome.jpg");
         ImageView i = new ImageView(ig);
         i.setX(0);
         i.setY(0);
