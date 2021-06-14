@@ -702,6 +702,7 @@ public class window<ae> {
         scene.getRoot().requestFocus();
         stage = new Stage();
         stage.setScene(scene);
+        stage.setTitle("Level 1");
         stage.setResizable(false);
         stage.show();
         music();

@@ -139,6 +139,7 @@ public class Experimental extends Application {
 
         Scene scene = new Scene(pane);
         stage.setScene(scene);
+        stage.setTitle("Game Of Avengers");
         stage.setResizable(false);
         stage.show();
     }

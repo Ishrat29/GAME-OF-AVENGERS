@@ -32,6 +32,7 @@ public class Help {
         scene.getRoot().requestFocus();
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setTitle("Instruction");
         stage.setResizable(false);
         stage.show();
 

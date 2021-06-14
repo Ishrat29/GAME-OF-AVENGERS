@@ -679,6 +679,7 @@ public class level2<ae>{
         scene.getRoot().requestFocus();
         stage = new Stage();
         stage.setScene(scene);
+        stage.setTitle("Level 2");
         stage.setResizable(false);
         stage.show();
         //music();
